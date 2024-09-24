@@ -1,6 +1,6 @@
 var xyz = 10;
 
-const d = 5;
+const d = 5
 
 var x = 6
 function example(args = 1) {
