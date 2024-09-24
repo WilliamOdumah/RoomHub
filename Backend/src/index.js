@@ -1,5 +1,6 @@
 var xyz = 10;
 
+const d = 5;
 function example(args = 1) {
     if (args == 1) {
         console.log("hello");
