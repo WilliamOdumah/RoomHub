@@ -1,4 +1,4 @@
-var xyz = 10;
+var xyz = 10
 
 const d = 5
 
