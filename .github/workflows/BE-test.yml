@@ -26,9 +26,7 @@ jobs:
     - name: Install dependencies(install the specific verion)    
       run: npm install
       working-directory: ./Backend
-      
-    - run: npm run build --if-present
-    
+          
     - name: Run all the tests
       run: npm run test
       working-directory: ./Backend
