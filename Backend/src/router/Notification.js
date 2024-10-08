@@ -11,7 +11,7 @@ const notification_handler = new NotificationHander();
 /**
  * @memberof Notification
  * @name Add a new notification
- * @path {POST} notification/create-notification
+ * @path {POST} notification/create-room-invite
  * @query {String} from The sender user ID
  * @query {String} to The receiver user ID
  * @query {String} type The type of notification
@@ -21,7 +21,11 @@ const notification_handler = new NotificationHander();
  * @code {500} Backend error from the database
  * @response {String} message See description of the different status codes
  */
-router.post("/create-notification", (req, res) => {
+router.post("/create-room-invite", (req, res) => {
+    notification_handler.create_notification(req, res);
+});
+
+router.post("/join-room-request", (req, res) => {
     notification_handler.create_notification(req, res);
 });
 

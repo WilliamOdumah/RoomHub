@@ -63,7 +63,12 @@ class NotificationHandler {
 
             const type = request.body.type;
             const msg = this.generate_message(from, to, type);
-            const room_id = await Services.get_user_persistence().get_room_id(from);
+            let room_id;
+            if (type === "invite") {
+                room_id = await Services.get_user_persistence().get_room_id(from);
+            } else {
+                room_id = await Services.get_user_persistence().get_room_id(from);
+            }
             if (!this.#is_valid_msg(msg)) {
                 // give a certain type of response
                 response.status(400).json({ message: "Error Creating Notification - Message is empty" });
@@ -101,6 +106,8 @@ class NotificationHandler {
     generate_message(from, to, type) {
         if (type === "invite") {
             return this.generate_invite_message(from, to);
+        } else if (type == "join-request") {
+            return this.generate_room_request_message(from);
         }
         return "";
     }
@@ -113,6 +120,15 @@ class NotificationHandler {
      */
     generate_invite_message(from, to) {
         return `${from} invites ${to} to join their room`;
+    }
+
+    /**
+     * Create an invite message based on sender, receiver
+     * @param {String} from "a sender ID"
+     * @returns {String} "notification invite message"
+     */
+    generate_room_request_message(from) {
+        return `${from} requests to join your room`;
     }
 }
 
