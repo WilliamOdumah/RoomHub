@@ -23,7 +23,7 @@ async function populate_db() {
             TableName: "User",
             Item: {
                 user_id: "test@gmail.com",
-                notification: new Set(["123", "456"]),
+                notification: new Set(["123", "456", "delete_req"]),
                 room_id: "rm_11",
             },
         });
@@ -88,8 +88,16 @@ async function populate_db() {
                 type: "invite",
             },
         });
+
+        const put_command_notification3 = new PutCommand({
+            TableName: "Notification",
+            Item: {
+                id: "delete_req",
+            },
+        });
         await doc_client.send(put_command_notification);
         await doc_client.send(put_command_notification2);
+        await doc_client.send(put_command_notification3);
     } catch (error) {
         throw new Error("Something went wrong " + error.message);
     }

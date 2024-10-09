@@ -31,7 +31,7 @@
         <h2><span class="attribs"><span class="type-signature"></span></span>
             <span class="ancestors"><a href="module-Handler.html">Handler</a>~</span>NotificationHandler<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Represents the notification handler</div>
+            <div class="class-description"><p>Represents the notification handler</p></div>
         
     
 </header>
@@ -54,7 +54,7 @@
 
 
 <div class="description">
-    Create a new NotificationHandler object
+    <p>Create a new NotificationHandler object</p>
 </div>
 
 
@@ -162,7 +162,7 @@
 
 
 <div class="description">
-    Check if the passed in message is valid
+    <p>Check if the passed in message is valid</p>
 </div>
 
 
@@ -214,7 +214,7 @@
 
             
 
-            <td class="description last">"A string representing the message to be validated"</td>
+            <td class="description last"><p>&quot;A string representing the message to be validated&quot;</p></td>
         </tr>
 
     
@@ -255,7 +255,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Handler_NotificationHandler.js.html">Handler/NotificationHandler.js</a>, <a href="Handler_NotificationHandler.js.html#line37">line 37</a>
+        <a href="Handler_NotificationHandler.js.html">Handler/NotificationHandler.js</a>, <a href="Handler_NotificationHandler.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -284,7 +284,7 @@
 
         
 <div class="param-desc">
-    "Returns true if valid message, return false if invalid"
+    <p>&quot;Returns true if valid message, return false if invalid&quot;</p>
 </div>
 
 
@@ -321,7 +321,7 @@
 
 
 <div class="description">
-    Add a new notification to the persistence Layer
+    <p>Add a new notification to the persistence Layer</p>
 </div>
 
 
@@ -373,7 +373,7 @@
 
             
 
-            <td class="description last">"Request received by the router"</td>
+            <td class="description last"><p>&quot;Request received by the router&quot;</p></td>
         </tr>
 
     
@@ -396,7 +396,7 @@
 
             
 
-            <td class="description last">"Response to be sent back to the service that sent the original request"</td>
+            <td class="description last"><p>&quot;Response to be sent back to the service that sent the original request&quot;</p></td>
         </tr>
 
     
@@ -437,7 +437,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Handler_NotificationHandler.js.html">Handler/NotificationHandler.js</a>, <a href="Handler_NotificationHandler.js.html#line50">line 50</a>
+        <a href="Handler_NotificationHandler.js.html">Handler/NotificationHandler.js</a>, <a href="Handler_NotificationHandler.js.html#line61">line 61</a>
     </li></ul></dd>
     
 
@@ -481,7 +481,7 @@
 
 
 <div class="description">
-    Create an invite message based on sender, receiver
+    <p>Create an invite message based on sender, receiver</p>
 </div>
 
 
@@ -533,7 +533,7 @@
 
             
 
-            <td class="description last">"a sender ID"</td>
+            <td class="description last"><p>&quot;a sender ID&quot;</p></td>
         </tr>
 
     
@@ -556,7 +556,212 @@
 
             
 
-            <td class="description last">"a receiver ID"</td>
+            <td class="description last"><p>&quot;a receiver ID&quot;</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Handler_NotificationHandler.js.html">Handler/NotificationHandler.js</a>, <a href="Handler_NotificationHandler.js.html#line127">line 127</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>&quot;notification invite message&quot;</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="generate_message"><span class="type-signature"></span>generate_message<span class="signature">(from, to, type)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Create a message based on sender, receiver and type</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>from</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>&quot;a sender ID&quot;</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>to</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>&quot;a receiver ID&quot;</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>&quot;a type of notification, for now we just have invite&quot;</p></td>
         </tr>
 
     
@@ -626,7 +831,7 @@
 
         
 <div class="param-desc">
-    "notification invite message"
+    <p>&quot;notification message&quot;</p>
 </div>
 
 
@@ -655,7 +860,7 @@
     
 
     
-    <h4 class="name" id="generate_message"><span class="type-signature"></span>generate_message<span class="signature">(from, to, type)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    <h4 class="name" id="generate_room_request_message"><span class="type-signature"></span>generate_room_request_message<span class="signature">(from)</span><span class="type-signature"> &rarr; {String}</span></h4>
     
 
     
@@ -663,7 +868,7 @@
 
 
 <div class="description">
-    Create a message based on sender, receiver and type
+    <p>Create an invite message based on sender, receiver</p>
 </div>
 
 
@@ -715,53 +920,7 @@
 
             
 
-            <td class="description last">"a sender ID"</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>to</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">"a receiver ID"</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">"a type of notification, for now we just have invite"</td>
+            <td class="description last"><p>&quot;a sender ID&quot;</p></td>
         </tr>
 
     
@@ -802,7 +961,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Handler_NotificationHandler.js.html">Handler/NotificationHandler.js</a>, <a href="Handler_NotificationHandler.js.html#line101">line 101</a>
+        <a href="Handler_NotificationHandler.js.html">Handler/NotificationHandler.js</a>, <a href="Handler_NotificationHandler.js.html#line136">line 136</a>
     </li></ul></dd>
     
 
@@ -831,7 +990,7 @@
 
         
 <div class="param-desc">
-    "notification message"
+    <p>&quot;notification invite message&quot;</p>
 </div>
 
 
@@ -870,13 +1029,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Handler.html">Handler</a></li><li><a href="module-Notification.html">Notification</a></li><li><a href="module-Persistence.html">Persistence</a></li><li><a href="module-Room.html">Room</a></li><li><a href="module-Services.html">Services</a></li><li><a href="module-User.html">User</a></li></ul><h3>Classes</h3><ul><li><a href="module-Handler-NotificationHandler.html">NotificationHandler</a></li><li><a href="module-Handler-RoomHandler.html">RoomHandler</a></li><li><a href="module-Handler-UserInfoHandler.html">UserInfoHandler</a></li><li><a href="module-Persistence-NotificationPersistence.html">NotificationPersistence</a></li><li><a href="module-Persistence-RoomPersistence.html">RoomPersistence</a></li><li><a href="module-Persistence-UserPersistence.html">UserPersistence</a></li><li><a href="module-Services-Services.html">Services</a></li></ul><h3>Global</h3><ul><li><a href="global.html#studentName">studentName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Handler.html">Handler</a></li><li><a href="module-Persistence.html">Persistence</a></li><li><a href="module-Services.html">Services</a></li></ul><h3>Namespaces</h3><ul><li><a href="Notification.html">Notification</a></li><li><a href="Room.html">Room</a></li><li><a href="User.html">User</a></li></ul><h3>Classes</h3><ul><li><a href="module-Handler-NotificationHandler.html">NotificationHandler</a></li><li><a href="module-Handler-RoomHandler.html">RoomHandler</a></li><li><a href="module-Handler-UserInfoHandler.html">UserInfoHandler</a></li><li><a href="module-Persistence-NotificationPersistence.html">NotificationPersistence</a></li><li><a href="module-Persistence-RoomPersistence.html">RoomPersistence</a></li><li><a href="module-Persistence-UserPersistence.html">UserPersistence</a></li><li><a href="module-Services-Services.html">Services</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Oct 07 2024 16:08:12 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed Oct 09 2024 02:40:08 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -1,7 +1,7 @@
 require("dotenv").config(); // Load environment variables
 const UserInfoHandler = require("../../src/Handler/UserInfoHandler");
 const UserPersistence = require("../../src/Persistence/UserPersistence");
-const { populate_db } = require("./DBSetup");
+const { populate_db } = require("./DbSetup");
 
 describe("UserPersistence Class-- Testing Creating a new user", () => {
     let user_info_handler;
@@ -34,18 +34,23 @@ describe("UserPersistence Class-- Getting a user", () => {
     let user_persistence;
     let user_id;
 
-    beforeAll(() => {
+    beforeAll(async () => {
         // initialize the userPersistence
         user_persistence = new UserPersistence();
 
         user_id = "test@gmail.com";
         fake_user_id = "testfake@gmail.com";
+        await populate_db();
     });
 
     it("Should return the retrieved javascript object", async () => {
         result = await user_persistence.get_user(user_id);
 
-        expect(result).toEqual({ user_id: "test@gmail.com", notification: new Set(["123", "456"]), room_id: "rm_11" });
+        expect(result).toEqual({
+            user_id: "test@gmail.com",
+            notification: new Set(["123", "456", "delete_req"]),
+            room_id: "rm_11",
+        });
     });
 
     it("Should return null- since the user doesn't exist", async () => {
@@ -58,13 +63,13 @@ describe("UserPersistence Class-- Update a users room", () => {
     let user_persistence;
     let user_id;
 
-    beforeAll(() => {
+    beforeAll(async () => {
         // initialize the userPersistence
         user_persistence = new UserPersistence();
 
         user_id = "test2@gmail.com";
         room_id = "rm_11";
-        // populate_db();
+        await populate_db();
     });
 
     it("Should not throw error- meaning successful update of the room", async () => {
@@ -77,12 +82,13 @@ describe("UserPresistence Class -- Getting a room id", () => {
     let user_id;
     let no_room_user_id;
 
-    beforeAll(() => {
+    beforeAll(async () => {
         // initialize the userPersistence
         user_persistence = new UserPersistence();
 
         user_id = "test@gmail.com";
         no_room_user_id = "test11@gmail.com";
+        await populate_db();
     });
 
     it("Should return room id", async () => {
@@ -102,23 +108,23 @@ describe("UserPersistence Class -- Getting notifications", () => {
     let user_id;
     let no_notif_user_id;
 
-    beforeAll(() => {
+    beforeAll(async () => {
         // initialize the userPersistence
         user_persistence = new UserPersistence();
 
         user_id = "test@gmail.com";
         no_notif_user_id = "test11@gmail.com";
+        await populate_db();
     });
 
     it("Should return notification", async () => {
         result = await user_persistence.get_notification(user_id);
-        expect(result).toEqual(new Set(["123", "456"]));
+        expect(result).toEqual(new Set(["123", "456", "delete_req"]));
     });
 
     it("Should return an error that user doesn't have a notification yet", async () => {
-        await expect(user_persistence.get_notification(no_notif_user_id)).rejects.toThrow(
-            `User ${no_notif_user_id} doesn't have a notification yet`,
-        );
+        let response = await user_persistence.get_notification(no_notif_user_id);
+        expect(response).toEqual(new Set([]));
     });
 });
 
@@ -127,16 +133,34 @@ describe("UserPersistence Class-- Update a users notification", () => {
     let user_id;
     let notif_id;
 
-    beforeAll(() => {
+    beforeAll(async () => {
         // initialize the userPersistence
         user_persistence = new UserPersistence();
 
         user_id = "test@gmail.com";
         notif_id = "123";
-        // populate_db();
+        await populate_db();
+    });
+    it("Should not throw error- meaning successful update of the notification", async () => {
+        await expect(user_persistence.update_user_notifications(notif_id, user_id)).resolves.not.toThrow();
+    });
+});
+
+describe("UserPersistence Class-- Deleting a notification from a users set of notifications", () => {
+    let user_persistence;
+    let user_id;
+    let notif_id;
+
+    beforeAll(async () => {
+        // initialize the userPersistence
+        user_persistence = new UserPersistence();
+
+        user_id = "test@gmail.com";
+        notif_id = "123";
+        await populate_db();
     });
 
     it("Should not throw error- meaning successful update of the notification", async () => {
-        await expect(user_persistence.update_user_notifications(notif_id, user_id)).resolves.not.toThrow();
+        await expect(user_persistence.update_notification_set(notif_id, user_id)).resolves.not.toThrow();
     });
 });

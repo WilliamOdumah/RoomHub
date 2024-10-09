@@ -1,6 +1,6 @@
 {
     "source": {
-      "include": ["src"],
+      "include": ["src", "README.md"],
       "exclude": ["./test", "./testing", "./node_modules"],
       "includePattern": ".+\\.js?$",
       "excludePattern": ".*\\.(config|test|spec|example)\\.(js|mjs)$"
@@ -8,11 +8,13 @@
     },
     "opts": {
       "destination": "./docs/",
-      "recurse": true
+      "recurse": true,
+      "title": "RoomHub Documentation"
     },
-    "plugins": ["jsdoc-http-plugin"],
+    "plugins": [ "plugins/markdown" ,"jsdoc-http-plugin"],
     "templates": {
       "cleverLinks":true,
       "monospaceLinks":true
     }
   }
+

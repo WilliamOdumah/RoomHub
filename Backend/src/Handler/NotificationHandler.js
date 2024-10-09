@@ -67,12 +67,15 @@ class NotificationHandler {
 
             // need to verify if sender and receiver exist in database and also sender have a room
             let sender = await this.#user_persistence.get_user(from);
-            const room_id = await this.#user_persistence.get_room_id(from);
+            // currently we have only one type "Join-request"
+            let room_id = await this.#user_persistence.get_room_id(to);
             let receiver = await this.#user_persistence.get_user(to);
+
             if (sender === null || receiver === null) {
                 response.status(404).json({ message: "User not found" });
             }
             const type = request.body.type;
+
             const msg = this.generate_message(from, to, type);
             if (!this.#is_valid_msg(msg)) {
                 // give a certain type of response
@@ -90,7 +93,7 @@ class NotificationHandler {
 
             if (new_notification_status === "SUCCESS") {
                 // assign new notification to both sender and receiver
-                await this.#user_persistence.update_user_notifications(notif_id, from);
+                // await this.#user_persistence.update_user_notifications(notif_id, from);
                 await this.#user_persistence.update_user_notifications(notif_id, to);
                 response.status(200).json({ message: "Successfully Created the new notification" });
             } else {
@@ -109,8 +112,8 @@ class NotificationHandler {
      * @returns {String} "notification message"
      */
     generate_message(from, to, type) {
-        if (type === "invite") {
-            return this.generate_invite_message(from, to);
+        if (type == "join-request") {
+            return this.generate_room_request_message(from);
         }
         return "";
     }
@@ -123,6 +126,15 @@ class NotificationHandler {
      */
     generate_invite_message(from, to) {
         return `${from} invites ${to} to join their room`;
+    }
+
+    /**
+     * Create an invite message based on sender, receiver
+     * @param {String} from "a sender ID"
+     * @returns {String} "notification invite message"
+     */
+    generate_room_request_message(from) {
+        return `${from} requests to join your room`;
     }
 }
 

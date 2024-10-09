@@ -5,12 +5,18 @@ jest.mock("../../../src/Utility/Services", () => ({
     get_user_persistence: () => ({
         get_user: jest.fn(),
         update_user_room: jest.fn(),
+        update_notification_set: jest.fn(),
     }),
 
     get_room_persistence: () => ({
         get_room_name: jest.fn(),
         generate_new_room: jest.fn(),
         add_new_roommate: jest.fn(),
+    }),
+
+    get_notification_persistence: () => ({
+        get_msg_type: jest.fn(),
+        delete_notification: jest.fn(),
     }),
 }));
 
@@ -150,7 +156,12 @@ describe("Unit test for adding roommate", () => {
             return "Test_rm";
         });
 
-        req.body = { existing_roommate: "test1@gmail.com", new_roommate: "test2@gmail.com", room_nm: "test_rm" };
+        req.body = {
+            existing_roommate: "test1@gmail.com",
+            new_roommate: "test2@gmail.com",
+            room_nm: "test_rm",
+            notification_id: "111",
+        };
 
         await roomHandler.add_roommate(req, res);
 
@@ -172,7 +183,12 @@ describe("Unit test for adding roommate", () => {
             return "different_room";
         });
 
-        req.body = { existing_roommate: "test1@gmail.com", new_roommate: "test2@gmail.com", room_nm: "test_rm" };
+        req.body = {
+            existing_roommate: "test1@gmail.com",
+            new_roommate: "test2@gmail.com",
+            room_nm: "test_rm",
+            notification_id: "111",
+        };
 
         await roomHandler.add_roommate(req, res);
 
@@ -190,7 +206,12 @@ describe("Unit test for adding roommate", () => {
             }
         });
 
-        req.body = { existing_roommate: "test1@gmail.com", new_roommate: "test2@gmail.com", room_nm: "test_rm" };
+        req.body = {
+            existing_roommate: "test1@gmail.com",
+            new_roommate: "test2@gmail.com",
+            room_nm: "test_rm",
+            notification_id: "111",
+        };
 
         await roomHandler.add_roommate(req, res);
 
@@ -204,7 +225,12 @@ describe("Unit test for adding roommate", () => {
             return null;
         });
 
-        req.body = { existing_roommate: "test1@gmail.com", new_roommate: "test2@gmail.com", room_nm: "test_rm" };
+        req.body = {
+            existing_roommate: "test1@gmail.com",
+            new_roommate: "test2@gmail.com",
+            room_nm: "test_rm",
+            notification_id: "111",
+        };
 
         await roomHandler.add_roommate(req, res);
 
@@ -222,7 +248,12 @@ describe("Unit test for adding roommate", () => {
             }
         });
 
-        req.body = { existing_roommate: "test1@gmail.com", new_roommate: "test2@gmail.com", room_nm: "test_rm" };
+        req.body = {
+            existing_roommate: "test1@gmail.com",
+            new_roommate: "test2@gmail.com",
+            room_nm: "test_rm",
+            notification_id: "111",
+        };
 
         await roomHandler.add_roommate(req, res);
 
@@ -240,7 +271,12 @@ describe("Unit test for adding roommate", () => {
             }
         });
 
-        req.body = { existing_roommate: "test1@gmail.com", new_roommate: "test2@gmail.com", room_nm: "test_rm" };
+        req.body = {
+            existing_roommate: "test1@gmail.com",
+            new_roommate: "test2@gmail.com",
+            room_nm: "test_rm",
+            notification_id: "111",
+        };
 
         await roomHandler.add_roommate(req, res);
 
@@ -254,7 +290,12 @@ describe("Unit test for adding roommate", () => {
             throw new Error("Something has occured");
         });
 
-        req.body = { existing_roommate: "test1@gmail.com", new_roommate: "test2@gmail.com", room_nm: "test_rm" };
+        req.body = {
+            existing_roommate: "test1@gmail.com",
+            new_roommate: "test2@gmail.com",
+            room_nm: "test_rm",
+            notification_id: "111",
+        };
 
         await roomHandler.add_roommate(req, res);
 

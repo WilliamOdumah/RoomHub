@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: User</title>
+    <title>JSDoc: Namespace: Room</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: User</h1>
+    <h1 class="page-title">Namespace: Room</h1>
 
     
 
@@ -28,8 +28,7 @@
 
 <header>
     
-        
-            
+        <h2>Room</h2>
         
     
 </header>
@@ -38,24 +37,10 @@
     <div class="container-overview">
     
         
-            <div class="description">Routes</div>
+            <div class="description"><p>Routes related to rooms</p></div>
         
 
         
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <dl class="details">
@@ -87,7 +72,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="router_User.js.html">router/User.js</a>, <a href="router_User.js.html#line1">line 1</a>
+        <a href="router_Room.js.html">router/Room.js</a>, <a href="router_Room.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -97,24 +82,6 @@
 
     
 </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         
@@ -138,7 +105,7 @@
 
         
             
-<h4 class="name" id="Addanewuser"><span class="type-signature">(route) </span>Add a new user<span class="type-signature"></span></h4>
+<h4 class="name" id="Addanewroom"><span class="type-signature">(route) </span>Add a new room<span class="type-signature"></span></h4>
 
 
 
@@ -149,7 +116,7 @@
                             <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
                             <tr>
                             <td class="type">POST</td>
-                            <td class="name last">user/add-user</td>
+                            <td class="name last">room/create-room</td>
                             </tr>
                             </table>
                             
@@ -165,6 +132,12 @@
               </tr>
             </thead>
             <tr>
+            <td class="name">rm</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">The name of the new room to be created</td>
+          </tr><tr>
             <td class="name">id</td>
             <td class="type">String</td>
             
@@ -207,25 +180,25 @@
             <td class="type">200</td>
             
             
-            <td class="description last">This user name already exist</td>
-          </tr><tr>
-            
-            <td class="type">200</td>
-            
-            
-            <td class="description last">User Successfully created</td>
+            <td class="description last">Successfully Created the new room</td>
           </tr><tr>
             
             <td class="type">400</td>
             
             
-            <td class="description last">Error Creating User- User id is invalid</td>
+            <td class="description last">Bad Request-Invalid Room Name</td>
+          </tr><tr>
+            
+            <td class="type">400</td>
+            
+            
+            <td class="description last">Bad Request-Invalid User</td>
           </tr><tr>
             
             <td class="type">500</td>
             
             
-            <td class="description last">Backend error from the database</td>
+            <td class="description last">Error message from backend</td>
           </tr>
           </table>
 </div>
@@ -265,7 +238,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="router_User.js.html">router/User.js</a>, <a href="router_User.js.html#line10">line 10</a>
+        <a href="router_Room.js.html">router/Room.js</a>, <a href="router_Room.js.html#line11">line 11</a>
     </li></ul></dd>
     
 
@@ -283,7 +256,7 @@
 
         
             
-<h4 class="name" id="Getausersroomname"><span class="type-signature">(route) </span>Get a users room name<span class="type-signature"></span></h4>
+<h4 class="name" id="Addanewroom-matetoaroom"><span class="type-signature">(route) </span>Add a new room-mate to a room<span class="type-signature"></span></h4>
 
 
 
@@ -293,12 +266,12 @@
                             <table class="params">
                             <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
                             <tr>
-                            <td class="type">GET</td>
-                            <td class="name last">user/:id/get-room</td>
+                            <td class="type">POST</td>
+                            <td class="name last">room/add-roommate</td>
                             </tr>
                             </table>
                             
-                            <h5>Route Parameters:</h5>
+                            <h5>Query Parameters:</h5>
           <table class="params">
             <thead>
               <tr>
@@ -310,11 +283,29 @@
               </tr>
             </thead>
             <tr>
-            <td class="name">:id</td>
+            <td class="name">existing_roommate</td>
             <td class="type">String</td>
             
             
-            <td class="description last">is the id of the user whose room we are trying to get.</td>
+            <td class="description last">The name of the already existing roommate</td>
+          </tr><tr>
+            <td class="name">new_roommate</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">The name of the roommate to be added newly to the room</td>
+          </tr><tr>
+            <td class="name">room_nm</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">The name of the new room the new roommate is getting added to</td>
+          </tr><tr>
+            <td class="name">notification_id</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">The notification id linked to the room join request.</td>
           </tr>
           </table>
                             <h5>Response:</h5>
@@ -329,7 +320,7 @@
               </tr>
             </thead>
             <tr>
-            <td class="name">room_name</td>
+            <td class="name">message</td>
             <td class="type">String</td>
             
             
@@ -352,19 +343,19 @@
             <td class="type">200</td>
             
             
-            <td class="description last">NA</td>
+            <td class="description last">New Roommate successfully added</td>
           </tr><tr>
             
-            <td class="type">200</td>
+            <td class="type">404</td>
             
             
-            <td class="description last">A valid room name</td>
+            <td class="description last">Room not found</td>
           </tr><tr>
             
-            <td class="type">400</td>
+            <td class="type">404</td>
             
             
-            <td class="description last">This username is invalid</td>
+            <td class="description last">Room not found. Create or Join a room</td>
           </tr><tr>
             
             <td class="type">404</td>
@@ -373,10 +364,22 @@
             <td class="description last">User not found</td>
           </tr><tr>
             
+            <td class="type">404</td>
+            
+            
+            <td class="description last">New roommate not found</td>
+          </tr><tr>
+            
+            <td class="type">404</td>
+            
+            
+            <td class="description last">Old roommate not found</td>
+          </tr><tr>
+            
             <td class="type">500</td>
             
             
-            <td class="description last">Backend error from the database</td>
+            <td class="description last">Error message from backend</td>
           </tr>
           </table>
 </div>
@@ -416,146 +419,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="router_User.js.html">router/User.js</a>, <a href="router_User.js.html#line25">line 25</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="Getanusernotification"><span class="type-signature">(route) </span>Get an user notification<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <h5>Route:</h5>
-                            <table class="params">
-                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
-                            <tr>
-                            <td class="type">GET</td>
-                            <td class="name last">user/:id/get-notification</td>
-                            </tr>
-                            </table>
-                            
-                            <h5>Route Parameters:</h5>
-          <table class="params">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                
-                
-                <th class="last">Description</th>
-              </tr>
-            </thead>
-            <tr>
-            <td class="name">:id</td>
-            <td class="type">String</td>
-            
-            
-            <td class="description last">is the id of the user whose room we are trying to get.</td>
-          </tr>
-          </table>
-                            <h5>Response:</h5>
-          <table class="params">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Type</th>
-                
-                
-                <th class="last">Description</th>
-              </tr>
-            </thead>
-            <tr>
-            <td class="name">A</td>
-            <td class="type">JSON</td>
-            
-            
-            <td class="description last">list of Notification See description of the different status codes</td>
-          </tr>
-          </table>
-                            <h5>Response Code:</h5>
-          <table class="params">
-            <thead>
-              <tr>
-                
-                <th>Type</th>
-                
-                
-                <th class="last">Description</th>
-              </tr>
-            </thead>
-            <tr>
-            
-            <td class="type">200</td>
-            
-            
-            <td class="description last">A valid notification</td>
-          </tr><tr>
-            
-            <td class="type">400</td>
-            
-            
-            <td class="description last">Invalid username</td>
-          </tr><tr>
-            
-            <td class="type">500</td>
-            
-            
-            <td class="description last">Backend error from the database</td>
-          </tr>
-          </table>
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="router_User.js.html">router/User.js</a>, <a href="router_User.js.html#line40">line 40</a>
+        <a href="router_Room.js.html">router/Room.js</a>, <a href="router_Room.js.html#line27">line 27</a>
     </li></ul></dd>
     
 
@@ -589,13 +453,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Handler.html">Handler</a></li><li><a href="module-Notification.html">Notification</a></li><li><a href="module-Persistence.html">Persistence</a></li><li><a href="module-Room.html">Room</a></li><li><a href="module-Services.html">Services</a></li><li><a href="module-User.html">User</a></li></ul><h3>Classes</h3><ul><li><a href="module-Handler-NotificationHandler.html">NotificationHandler</a></li><li><a href="module-Handler-RoomHandler.html">RoomHandler</a></li><li><a href="module-Handler-UserInfoHandler.html">UserInfoHandler</a></li><li><a href="module-Persistence-NotificationPersistence.html">NotificationPersistence</a></li><li><a href="module-Persistence-RoomPersistence.html">RoomPersistence</a></li><li><a href="module-Persistence-UserPersistence.html">UserPersistence</a></li><li><a href="module-Services-Services.html">Services</a></li></ul><h3>Global</h3><ul><li><a href="global.html#studentName">studentName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Handler.html">Handler</a></li><li><a href="module-Persistence.html">Persistence</a></li><li><a href="module-Services.html">Services</a></li></ul><h3>Namespaces</h3><ul><li><a href="Notification.html">Notification</a></li><li><a href="Room.html">Room</a></li><li><a href="User.html">User</a></li></ul><h3>Classes</h3><ul><li><a href="module-Handler-NotificationHandler.html">NotificationHandler</a></li><li><a href="module-Handler-RoomHandler.html">RoomHandler</a></li><li><a href="module-Handler-UserInfoHandler.html">UserInfoHandler</a></li><li><a href="module-Persistence-NotificationPersistence.html">NotificationPersistence</a></li><li><a href="module-Persistence-RoomPersistence.html">RoomPersistence</a></li><li><a href="module-Persistence-UserPersistence.html">UserPersistence</a></li><li><a href="module-Services-Services.html">Services</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Oct 07 2024 16:08:12 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Wed Oct 09 2024 02:40:08 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
