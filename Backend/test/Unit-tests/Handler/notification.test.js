@@ -144,4 +144,36 @@ describe("Unit test for creating notification", () => {
         expect(res.status).toHaveBeenCalledWith(500);
         expect(res.json).toHaveBeenCalledWith(expect.any(Object));
     });
+
+    it("Send an error saying the user not found", async () => {
+        // mock get_user and get_msg_type
+        notificationHandler.get_user_persistence().get_user.mockImplementation(() => {
+            return { user_id: "test123@gmail.com", notification: ["111-111", "222-222"], room_id: "123-123" };
+        });
+        notificationHandler.get_user_persistence().get_room_id.mockImplementation((user_id) => {
+            return "123-123";
+        });
+        notificationHandler.get_user_persistence().get_user.mockImplementation(() => {
+            return { user_id: "test234@gmail.com", notification: ["111-111", "222-222"] };
+        });
+        notificationHandler
+            .get_notification_persistence()
+            .generate_new_notification.mockImplementation((notif_id, msg, status, from, to, type, room_id) => {
+                return "SUCCESS";
+            });
+        notificationHandler.get_user_persistence().update_user_notifications.mockImplementation((notif_id, user_id) => {
+            if (user_id === "test123@gmail.com") {
+                console.log(`Update notification ${notif_id} for user ${user_id}`);
+            } else if (user_id === "test234@gmail.com") {
+                console.log(`Update notification ${notif_id} for user ${user_id}`);
+            }
+        });
+
+        req.body = { from: "test123@gmail.com", to: "", type: "invite" };
+
+        await notificationHandler.create_notification(req, res);
+
+        expect(res.status).toHaveBeenCalledWith(404);
+        expect(res.json).toHaveBeenCalledWith({ message: "User not found" });
+    });
 });

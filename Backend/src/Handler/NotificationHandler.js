@@ -73,7 +73,7 @@ class NotificationHandler {
             const to = request.body.to;
 
             if (!this.#is_valid_user_string(to)) {
-                response.status("404").json({ message: "User not found" });
+                response.status(404).json({ message: "User not found" });
             }
 
             // need to verify if sender and receiver exist in database and also sender have a room
