@@ -51,3 +51,12 @@ If lambda doesn't work:
    ```
    $npm run integration-tests
    ```
+
+## Backend Documentation
+1. Go to the backend directory.
+    ```
+    $ cd Backend/docs/index.html
+    ```
+2. Open the index.html file in Browser
+3. API specification under the Namespaces group. User,Room and Notification are the current base paths we have.
+4. Other documentation for classes in Modules and Classes
