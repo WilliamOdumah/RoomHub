@@ -26,7 +26,7 @@ describe("Testing base routes-- Making sure all routes are mounted properly", ()
         expect(response.body).toEqual(exp_msg);
     });
 
-    it("Should return welcome to the user paths", async () => {
+    it("Should return welcome to the notification paths", async () => {
         const exp_stat = 200;
         const exp_msg = { message: "Welcome to the Notification paths" };
         const response = await request(app).get("/notification");
