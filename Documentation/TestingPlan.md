@@ -201,8 +201,7 @@ The testplan for this sprint contains Unit tests and Integration tests
         - Expected Output: 404 Not Found with { message: "User not found" }.
 
 ##### 2.22 Persistence Integration Tests
-1. UserInfoHandler
-**Fetching User's Room (.create_user)**
+1. UserPersistence
    1. Test Case 1: Create a new user
        - Input: user_id = "test3@gmail.com"
        - Expected Output:
@@ -247,3 +246,35 @@ The testplan for this sprint contains Unit tests and Integration tests
         - Input: user_id = "test@gmail.com", notif_id = "123"
         - Expected Output:
         No errors are thrown, indicating successful deletion of the notification.
+2. NotificationPersistence
+   1. Test Case 1: Retrieve message, type, notification_id, and from database.
+        - Input: notif_id = "123"
+        Expected Output:
+        - Object returned: { from: "test@gmail.com", msg: "abc invite bcd", type: "invite", notification_id: "123" }.
+   2. Test Case 2: Error when notification doesn't have a message
+        - Input: notif_id = "456"
+        - Expected Output:
+        Error: "Notification doesn't have a message".
+   3. Test Case 3: Successfully create a new notification
+        - Expected Output:
+        Return value: "SUCCESS".
+   4. Test Case 4: Failed to create a new notification
+        - Return value: "FAILED".
+   5. Test Case 5: Successfully update a notification state
+        - Input: notif_id = "123"
+        - No errors thrown, indicating successful update.
+   6. Test Case 6: Successfully delete a notification
+        - No errors thrown, indicating successful deletion. 
+3. RoomPersistence
+   1. Retrieve a Valid Room Name
+        - Description: Fetch the name of a valid room with room_id = "rm_11".
+        - Expected Outcome: The method should return the room name "test_room1".
+   2. Throw Error if Room Doesn't Have a Name
+        - Description: Attempt to fetch a room name using room_id = "rm_bad", which doesn’t have a name.
+        - Expected Outcome: The method should throw an error with the message "Room doesn't have a name--Service Unavailable".
+    3. Create a New Room Successfully
+        - Description: Call generate_new_room() with a unique room ID ("rm_12"), room name ("test_room2"), and a user ID ("test2@gmail.com").
+        - Expected Outcome: The method should return "SUCCESS" to signify that the room was created successfully.
+    4. Fail to Create a Room with Duplicate Room ID
+        - Description: Attempt to create a room with an already existing room ID ("rm_12").
+        - Expected Outcome: The method should return "FAILED" due to the ConditionExpression failure.
