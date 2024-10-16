@@ -33,6 +33,7 @@ class NotificationHandler {
     }
 
     get_notification_persistence() {
+        console.log(this.#notification_persistence);
         return this.#notification_persistence;
     }
 
