@@ -1,67 +1,65 @@
-<<<<<<< HEAD
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React,{useState} from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios'
+import styles from '../styles/CreateRoomPage.module.css';
 
 const CreateRoomPage = () => {
     const navigate = useNavigate()
+    const location = useLocation();
+    const hasRoom = location.state?.hasRoom; 
+    const email = location.state?.email;
+    const[name, setName] = useState('');
+    const [error, setError] = useState('');
 
-    const handleSubmit = () =>{
-        // add room to users database
-        alert('Your room has been created')
-        navigate('/virtual-room')
-    }
+    // Function to handle input change
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+      };
+
+      const handleSubmit = async () => {
+        try {
+          // Make a POST request to create a room
+          const response = await axios.post('https://7hm4udd9s2.execute-api.ca-central-1.amazonaws.com/dev/room/create-room', {
+            rm: name,
+            id: email,
+          });
+    
+          if (response.status === 200) {
+            alert('Your room has been created');
+            navigate('/virtual-room', { state: { email, hasRoom: true } }); // user now has a room
+          } else {
+            setError('Failed to create the room. Please try again.');
+          }
+        } catch (error) {
+          setError('An error occurred while creating the room.');
+          console.error('Room creation error:', error);
+        }
+      };
 
     return (
-    <div>
-        <h1>Create Room</h1>
-        <form>
-        <label>
-            Room Name:
-            <input type="text" name="roomName" />
-        </label>
-        <label>
-            Invite Members (Emails):
-            <input type="email" name="emails" />
-        </label>
-        <button type="submit" onClick={handleSubmit}>Create Room</button>
-        </form>
-        <button onClick={() => navigate('/home')}>Back to Home</button>
-    </div>
+        <div className={styles.container}>
+            <div className={styles.card}>
+                <h1>Create Room</h1>
+                <form>
+                    <div className={styles.formGroup}>
+                        <label htmlFor="name">Room Name:</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={name}
+                            onChange={handleNameChange}
+                            required
+                        />
+                    </div>
+                    <button type="button" onClick={handleSubmit}>Create Room</button>
+                </form>
+                {/* Display error message if any */}
+                {error && <p className={styles.error}>{error}</p>}
+                <button className={styles.backButton} onClick={() => navigate('/home', { state: { email, hasRoom: true } })}>Back to Home</button>
+            </div>
+        </div>
     );
 };
 
 export default CreateRoomPage;
-=======
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-
-const CreateRoomPage = () => {
-    const navigate = useNavigate()
-
-    const handleSubmit = () =>{
-        // add room to users database
-        alert('Your room has been created')
-        navigate('/virtual-room')
-    }
-
-    return (
-    <div>
-        <h1>Create Room</h1>
-        <form>
-        <label>
-            Room Name:
-            <input type="text" name="roomName" />
-        </label>
-        <label>
-            Invite Members (Emails):
-            <input type="email" name="emails" />
-        </label>
-        <button type="submit" onClick={handleSubmit}>Create Room</button>
-        </form>
-        <button onClick={() => navigate('/home')}>Back to Home</button>
-    </div>
-    );
-};
-
-export default CreateRoomPage;
->>>>>>> 1f09ebd1cef8a0aac90daf31f606826e755f479f

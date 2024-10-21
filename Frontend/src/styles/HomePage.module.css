@@ -1,0 +1,150 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Make sure content starts at the top */
+  min-height: 100vh; /* Ensure the container takes the full height of the viewport */
+  background-color: #f0f0f0;
+  font-family: 'Arial', sans-serif;
+  padding-left: 0;
+}
+
+.logo{
+  margin-left: 30px;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.logo img {
+  width: 160px;
+}
+
+.header {
+  position: sticky; 
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #f0f0f0;
+  z-index: 1000;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.icons {
+  display: flex;
+  gap: 40px;
+  margin-right: 60px;
+}
+
+.icon {
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+.title {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+  padding: 20px;
+  padding-top:40px; 
+  justify-content: center; 
+}
+
+.card {
+  width: 100%; /* Allow cards to be responsive inside the grid */
+  max-width: 400px; /* Set the maximum width for each card */
+  height: auto;
+  background-color: #ffffff;
+  border-radius: 15px; /* Slightly larger border radius for a smoother effect */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* A slightly stronger shadow for depth */
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transitions for hover effects */
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  color: #333333;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #555555;
+  margin-bottom: 70px;
+}
+
+.card button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.inactive {
+  background-color: gray;
+}
+
+.card button:hover {
+  background-color: #45a049;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.cardContent {
+  flex: 1;
+}
+
+
+.logout {
+  margin-top: 40px;
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.action {
+  margin-top: 40px;
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+}

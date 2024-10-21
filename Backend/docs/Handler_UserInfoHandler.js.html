@@ -52,7 +52,7 @@ class UserInfoHandler {
     #room_persistence;
 
     /**
-     * The room persistence object used by the info handler.
+     * The notificaion persistence object used by the info handler.
      * @type {string}
      * @private
      */
@@ -100,7 +100,7 @@ class UserInfoHandler {
      */
     async create_user(request, response) {
         try {
-            const user_id = request.body.id;
+            const user_id = request.body.id.trim().toLowerCase();
             if (!this.#is_valid_id(user_id)) {
                 // give a certain type of response
                 return response.status(400).json({ message: "Error Creating User- User id is invalid" });
@@ -115,7 +115,7 @@ class UserInfoHandler {
     /**
      * Get a users room
      * @async
-     * @param {Express.request} request "Reequest received by the router"
+     * @param {Express.request} request "Request received by the router"
      * @param {Express.response} response "Response to be sent back to the service that sent the original request"
      * @returns {Express.response} "A response object which contains the response to the request."
      */
@@ -161,7 +161,7 @@ class UserInfoHandler {
                 // if valid user id
                 let user = await this.#user_persistence.get_user(user_id);
                 if (user === null) {
-                    response.status(404).json({ room_name: "User not found" });
+                    response.status(404).json({ message: "User not found" });
                 } else {
                     let notification = await this.#user_persistence.get_notification(user_id);
                     // convert set into array
@@ -174,6 +174,130 @@ class UserInfoHandler {
                         result.push(notif_item);
                     }
                     response.status(200).json({ All_Notifications: result });
+                }
+            }
+        } catch (error) {
+            response.status(500).json({ message: error.message });
+        }
+    }
+
+    /**
+     * Get a message notify user left the room
+     * @async
+     * @param {Express.request} request "Request received by the router"
+     * @param {Express.response} response "Response to be sent back to the service that sent the original request"
+     * @returns {Express.response} "A response object which contains the response to the request."
+     */
+    async leave_user_room(request, response) {
+        try {
+            let user_id = request.params.id.trim().toLowerCase();
+            // validate user_id
+            if (!this.#is_valid_id(user_id)) {
+                response.status(400).json({ message: "This username is invalid" });
+            } else {
+                // if valid user id
+                let user = await this.#user_persistence.get_user(user_id);
+                if (user === null) {
+                    response.status(404).json({ message: "User not found" });
+                } else {
+                    // get the room id from the given user
+                    let room_id = await this.#user_persistence.get_room_id(user_id);
+                    // get the total number of users in the room
+                    let users = await this.#room_persistence.get_room_users(room_id);
+                    let total_users = users.size;
+                    // the room only have 1 user
+                    if (total_users === 1) {
+                        // delete room
+                        await this.#room_persistence.delete_room(room_id);
+                        // remove room_id from the specific user
+                        await this.#user_persistence.remove_room_id(room_id, user_id);
+                        response.status(200).json({
+                            message: "The room is being deleted and user leave the room successfully",
+                        });
+                        // more than 1 user in the room
+                    } else {
+                        // remove user_id from the specific room
+                        await this.#room_persistence.remove_user_id(user_id, room_id);
+                        // remove room_id from the specific user
+                        await this.#user_persistence.remove_room_id(room_id, user_id);
+                        response.status(200).json({ message: "User leave the room successfully" });
+                    }
+                }
+            }
+        } catch (error) {
+            response.status(500).json({ message: error.message });
+        }
+    }
+
+    /**
+     * Get a warning message if user want to leave the room
+     * @async
+     * @param {Express.request} request "Request received by the router"
+     * @param {Express.response} response "Response to be sent back to the service that sent the original request"
+     * @returns {Express.response} "A response message which contains the response to the request."
+     */
+    async get_user_warning(request, response) {
+        try {
+            let user_id = request.params.id.trim().toLowerCase();
+            // validate user_id
+            if (!this.#is_valid_id(user_id)) {
+                response.status(400).json({ message: "This username is invalid" });
+            } else {
+                // if valid user id
+                let user = await this.#user_persistence.get_user(user_id);
+                if (user === null) {
+                    response.status(404).json({ message: "User not found" });
+                } else {
+                    // get the room id from the given user
+                    let room_id = await this.#user_persistence.get_room_id(user_id);
+                    // get the total number of users in the room
+                    let users = await this.#room_persistence.get_room_users(room_id);
+                    let total_users = users.size;
+                    // the room only have 1 user
+                    if (total_users === 1) {
+                        response.status(200).json({ message: "Warning: If you leave, the room will be deleted!" });
+                        // more than 1 user in the room
+                    } else {
+                        response.status(200).json({ message: "Warning: Are you sure want to leave this room!" });
+                    }
+                }
+            }
+        } catch (error) {
+            response.status(500).json({ message: error.message });
+        }
+    }
+
+    /**
+     * Get a message notify if you have roommate or not
+     * @async
+     * @param {Express.request} request "Request received by the router"
+     * @param {Express.response} response "Response to be sent back to the service that sent the original request"
+     * @returns {Express.response} "A response message which contains the response to the request."
+     */
+    async get_roommate(request, response) {
+        try {
+            let user_id = request.params.id.trim().toLowerCase();
+            // validate user_id
+            if (!this.#is_valid_id(user_id)) {
+                response.status(400).json({ message: "This username is invalid" });
+            } else {
+                // if valid user id
+                let user = await this.#user_persistence.get_user(user_id);
+                if (user === null) {
+                    response.status(404).json({ message: "User not found" });
+                } else {
+                    // get the room id from the given user
+                    let room_id = await this.#user_persistence.get_room_id(user_id);
+                    // get the total number of users in the room
+                    let users = await this.#room_persistence.get_room_users(room_id);
+                    let total_users = users.size;
+                    // the room only have 1 user
+                    if (total_users === 1) {
+                        response.status(200).json({ message: "You have no roommate" });
+                        // more than 1 user in the room
+                    } else {
+                        response.status(200).json({ message: "You have at least one roommate" });
+                    }
                 }
             }
         } catch (error) {
@@ -193,13 +317,13 @@ module.exports = UserInfoHandler;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Handler.html">Handler</a></li><li><a href="module-Notification.html">Notification</a></li><li><a href="module-Persistence.html">Persistence</a></li><li><a href="module-Room.html">Room</a></li><li><a href="module-Services.html">Services</a></li><li><a href="module-User.html">User</a></li></ul><h3>Classes</h3><ul><li><a href="module-Handler-NotificationHandler.html">NotificationHandler</a></li><li><a href="module-Handler-RoomHandler.html">RoomHandler</a></li><li><a href="module-Handler-UserInfoHandler.html">UserInfoHandler</a></li><li><a href="module-Persistence-NotificationPersistence.html">NotificationPersistence</a></li><li><a href="module-Persistence-RoomPersistence.html">RoomPersistence</a></li><li><a href="module-Persistence-UserPersistence.html">UserPersistence</a></li><li><a href="module-Services-Services.html">Services</a></li></ul><h3>Global</h3><ul><li><a href="global.html#studentName">studentName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Handler.html">Handler</a></li><li><a href="module-Persistence.html">Persistence</a></li><li><a href="module-Services.html">Services</a></li></ul><h3>Namespaces</h3><ul><li><a href="Notification.html">Notification</a></li><li><a href="Room.html">Room</a></li><li><a href="User.html">User</a></li></ul><h3>Classes</h3><ul><li><a href="module-Handler-NotificationHandler.html">NotificationHandler</a></li><li><a href="module-Handler-RoomHandler.html">RoomHandler</a></li><li><a href="module-Handler-UserInfoHandler.html">UserInfoHandler</a></li><li><a href="module-Persistence-NotificationPersistence.html">NotificationPersistence</a></li><li><a href="module-Persistence-RoomPersistence.html">RoomPersistence</a></li><li><a href="module-Persistence-UserPersistence.html">UserPersistence</a></li><li><a href="module-Services-Services.html">Services</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Oct 07 2024 16:08:12 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Oct 20 2024 19:57:07 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

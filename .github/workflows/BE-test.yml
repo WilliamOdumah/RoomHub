@@ -4,11 +4,8 @@
 name: Running tests
 
 on:
-  push:
-    # for now, -- it should just be on merge into main.
-    branches: ["Daniel-BE-usrmgmt"]
   pull_request:
-    branches: ["main"]
+    branches: [ "main", "dev" ]
 
 jobs:
   build:

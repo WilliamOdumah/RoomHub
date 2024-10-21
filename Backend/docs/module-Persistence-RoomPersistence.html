@@ -31,7 +31,7 @@
         <h2><span class="attribs"><span class="type-signature"></span></span>
             <span class="ancestors"><a href="module-Persistence.html">Persistence</a>~</span>RoomPersistence<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Represents the room persistence layer that is linked to the room table in the database.</div>
+            <div class="class-description"><p>Represents the room persistence layer that is linked to the room table in the database.</p></div>
         
     
 </header>
@@ -54,7 +54,7 @@
 
 
 <div class="description">
-    Create a new RoomPersistence object
+    <p>Create a new RoomPersistence object</p>
 </div>
 
 
@@ -98,7 +98,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Persistence_RoomPersistence.js.html">Persistence/RoomPersistence.js</a>, <a href="Persistence_RoomPersistence.js.html#line13">line 13</a>
+        <a href="Persistence_RoomPersistence.js.html">Persistence/RoomPersistence.js</a>, <a href="Persistence_RoomPersistence.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -162,7 +162,7 @@
 
 
 <div class="description">
-    Use update command to add a new user to the set of users "belonging" to a room.
+    <p>Use update command to add a new user to the set of users &quot;belonging&quot; to a room.</p>
 </div>
 
 
@@ -214,7 +214,7 @@
 
             
 
-            <td class="description last">"The unique id of a room"</td>
+            <td class="description last"><p>&quot;The unique id of a room&quot;</p></td>
         </tr>
 
     
@@ -237,7 +237,7 @@
 
             
 
-            <td class="description last">"The unique id of a user(new roommate)"</td>
+            <td class="description last"><p>&quot;The unique id of a user(new roommate)&quot;</p></td>
         </tr>
 
     
@@ -278,7 +278,144 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Persistence_RoomPersistence.js.html">Persistence/RoomPersistence.js</a>, <a href="Persistence_RoomPersistence.js.html#line132">line 132</a>
+        <a href="Persistence_RoomPersistence.js.html">Persistence/RoomPersistence.js</a>, <a href="Persistence_RoomPersistence.js.html#line138">line 138</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="delete_room"><span class="type-signature">(async) </span>delete_room<span class="signature">(room_id)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Use Delete command to delete the specific room given room_id from Room table</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>room_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>&quot;The unique identifier for the room&quot;</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Persistence_RoomPersistence.js.html">Persistence/RoomPersistence.js</a>, <a href="Persistence_RoomPersistence.js.html#line181">line 181</a>
     </li></ul></dd>
     
 
@@ -320,6 +457,10 @@
     
 
 
+
+<div class="description">
+    <p>Use Put command to create the new room into Room table</p>
+</div>
 
 
 
@@ -370,7 +511,7 @@
 
             
 
-            <td class="description last">"The unique identifier for the room"</td>
+            <td class="description last"><p>&quot;The unique identifier for the room&quot;</p></td>
         </tr>
 
     
@@ -393,7 +534,7 @@
 
             
 
-            <td class="description last">"The room name as defined by user or function caller"</td>
+            <td class="description last"><p>&quot;The room name as defined by user or function caller&quot;</p></td>
         </tr>
 
     
@@ -416,7 +557,7 @@
 
             
 
-            <td class="description last">"Id of user belonging to the room."</td>
+            <td class="description last"><p>&quot;Id of user belonging to the room.&quot;</p></td>
         </tr>
 
     
@@ -457,7 +598,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Persistence_RoomPersistence.js.html">Persistence/RoomPersistence.js</a>, <a href="Persistence_RoomPersistence.js.html#line104">line 104</a>
+        <a href="Persistence_RoomPersistence.js.html">Persistence/RoomPersistence.js</a>, <a href="Persistence_RoomPersistence.js.html#line110">line 110</a>
     </li></ul></dd>
     
 
@@ -486,7 +627,7 @@
 
         
 <div class="param-desc">
-    "SUCCESS OR FAILURE - if the db write succeeded or failed."
+    <p>&quot;SUCCESS OR FAILURE - if the db write succeeded or failed.&quot;</p>
 </div>
 
 
@@ -521,6 +662,10 @@
     
 
 
+
+<div class="description">
+    <p>Use Get command to get the room name from Room table</p>
+</div>
 
 
 
@@ -571,7 +716,7 @@
 
             
 
-            <td class="description last">"The unique identifier for the room"</td>
+            <td class="description last"><p>&quot;The unique identifier for the room&quot;</p></td>
         </tr>
 
     
@@ -612,7 +757,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Persistence_RoomPersistence.js.html">Persistence/RoomPersistence.js</a>, <a href="Persistence_RoomPersistence.js.html#line81">line 81</a>
+        <a href="Persistence_RoomPersistence.js.html">Persistence/RoomPersistence.js</a>, <a href="Persistence_RoomPersistence.js.html#line87">line 87</a>
     </li></ul></dd>
     
 
@@ -641,7 +786,7 @@
 
         
 <div class="param-desc">
-    "The roomname associated with the room_id"
+    <p>&quot;The roomname associated with the room_id&quot;</p>
 </div>
 
 
@@ -665,6 +810,325 @@
 
 
         
+            
+
+    
+
+    
+    <h4 class="name" id="get_room_users"><span class="type-signature">(async) </span>get_room_users<span class="signature">(room_id)</span><span class="type-signature"> &rarr; {Set}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Use Get command to get the list of users from the given room</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>room_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>&quot;The unique identifier for the room&quot;</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Persistence_RoomPersistence.js.html">Persistence/RoomPersistence.js</a>, <a href="Persistence_RoomPersistence.js.html#line161">line 161</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>&quot;The list of users associated with the room_id&quot;</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Set</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="remove_user_id"><span class="type-signature">(async) </span>remove_user_id<span class="signature">(user_id, room_id)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Use Update command to delete specific user from specific room</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>user_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>&quot;The unique identifier for the user&quot;</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>room_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>&quot;The unique identifier for the room&quot;</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Persistence_RoomPersistence.js.html">Persistence/RoomPersistence.js</a>, <a href="Persistence_RoomPersistence.js.html#line197">line 197</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     
 
     
@@ -680,13 +1144,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Handler.html">Handler</a></li><li><a href="module-Notification.html">Notification</a></li><li><a href="module-Persistence.html">Persistence</a></li><li><a href="module-Room.html">Room</a></li><li><a href="module-Services.html">Services</a></li><li><a href="module-User.html">User</a></li></ul><h3>Classes</h3><ul><li><a href="module-Handler-NotificationHandler.html">NotificationHandler</a></li><li><a href="module-Handler-RoomHandler.html">RoomHandler</a></li><li><a href="module-Handler-UserInfoHandler.html">UserInfoHandler</a></li><li><a href="module-Persistence-NotificationPersistence.html">NotificationPersistence</a></li><li><a href="module-Persistence-RoomPersistence.html">RoomPersistence</a></li><li><a href="module-Persistence-UserPersistence.html">UserPersistence</a></li><li><a href="module-Services-Services.html">Services</a></li></ul><h3>Global</h3><ul><li><a href="global.html#studentName">studentName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Handler.html">Handler</a></li><li><a href="module-Persistence.html">Persistence</a></li><li><a href="module-Services.html">Services</a></li></ul><h3>Namespaces</h3><ul><li><a href="Notification.html">Notification</a></li><li><a href="Room.html">Room</a></li><li><a href="User.html">User</a></li></ul><h3>Classes</h3><ul><li><a href="module-Handler-NotificationHandler.html">NotificationHandler</a></li><li><a href="module-Handler-RoomHandler.html">RoomHandler</a></li><li><a href="module-Handler-UserInfoHandler.html">UserInfoHandler</a></li><li><a href="module-Persistence-NotificationPersistence.html">NotificationPersistence</a></li><li><a href="module-Persistence-RoomPersistence.html">RoomPersistence</a></li><li><a href="module-Persistence-UserPersistence.html">UserPersistence</a></li><li><a href="module-Services-Services.html">Services</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Oct 07 2024 16:08:12 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Oct 20 2024 19:57:07 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

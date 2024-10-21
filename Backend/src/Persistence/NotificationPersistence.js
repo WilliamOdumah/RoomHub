@@ -1,5 +1,11 @@
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
-const { DynamoDBDocumentClient, GetCommand, UpdateCommand, PutCommand } = require("@aws-sdk/lib-dynamodb");
+const {
+    DynamoDBDocumentClient,
+    GetCommand,
+    UpdateCommand,
+    PutCommand,
+    DeleteCommand,
+} = require("@aws-sdk/lib-dynamodb");
 const Services = require("../Utility/Services");
 require("dotenv").config();
 
@@ -87,13 +93,12 @@ class NotificationPersistence {
 
         let message = response.Item.message;
         let type = response.Item.type;
+        let from = response.Item.from;
         if (message === undefined || message === "") {
             throw new Error("Notification doesn't have a message");
         }
-        return {
-            msg: message,
-            type: type,
-        };
+
+        return { notification_id: notif_id, msg: message, type: type, from: from };
     }
 
     /**
@@ -157,6 +162,21 @@ class NotificationPersistence {
         });
 
         await this.#doc_client.send(update_command);
+    }
+
+    /**
+     * Delete a notification with the notification id.
+     * @param {String} notification_id  "The unique identifier for the notification"
+     */
+    async delete_notification(notification_id) {
+        const delete_command = new DeleteCommand({
+            TableName: "Notification",
+            Key: {
+                id: notification_id,
+            },
+        });
+
+        await this.#doc_client.send(delete_command);
     }
 }
 

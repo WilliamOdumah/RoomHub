@@ -20,7 +20,7 @@ describe("Notification router tests", () => {
             to: "test234@gmail.com",
             type: "invite",
         };
-        const response = await request(app).post("/notification/create-notification").send(query_params);
+        const response = await request(app).post("/notification/join-room-request").send(query_params);
         const exp_stat = 200;
         const exp_msg = { message: "Test Successful" };
         expect(response.status).toBe(exp_stat);

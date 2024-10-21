@@ -1,6 +1,6 @@
 require("dotenv").config(); // Load environment variables
 const NotificationPersistence = require("../../src/Persistence/NotificationPersistence");
-const { populate_db } = require("./DBSetup");
+const { populate_db } = require("./DbSetup");
 
 describe("NotificationPersistence Class-- Getting message and type", () => {
     let notif_persistence;
@@ -15,11 +15,13 @@ describe("NotificationPersistence Class-- Getting message and type", () => {
         await populate_db();
     });
 
-    it("Should retrieve a message and type", async () => {
+    it("Should retrieve a message, type, notification_id and from", async () => {
         result = await notif_persistence.get_msg_type(notif_id);
         expect(result).toStrictEqual({
+            from: "test@gmail.com",
             msg: "abc invite bcd",
             type: "invite",
+            notification_id: "123",
         });
     });
 
@@ -81,7 +83,23 @@ describe("NotificationPersistence Class -- Update a notification state", () => {
         await populate_db();
     });
 
-    it("Should not throw errro - meaning successful update of the state", async () => {
+    it("Should not throw errror - meaning successful update of the state", async () => {
         await expect(notif_persistence.update_notification_status(notif_id)).resolves.not.toThrow();
+    });
+});
+
+describe("NotificationPersistence Class-- Delete a notification", () => {
+    let notif_persistence;
+    let notif_id;
+    let user_id;
+
+    beforeAll(async () => {
+        // initialize the notifHandlerobject
+        notif_persistence = new NotificationPersistence();
+        notif_id = "delete_req";
+        await populate_db();
+    });
+    it("Should not throw error- Meaning successful deletion of the notification", async () => {
+        await expect(notif_persistence.delete_notification(notif_id)).resolves.not.toThrow();
     });
 });

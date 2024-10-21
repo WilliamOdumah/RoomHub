@@ -1,0 +1,109 @@
+{
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.12.6\",\"stackType\":\"auth-Cognito-UserPool-Groups\",\"metadata\":{}}",
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "env": {
+      "Type": "String"
+    },
+    "AuthRoleArn": {
+      "Type": "String"
+    },
+    "UnauthRoleArn": {
+      "Type": "String"
+    },
+    "authroomhub62f7b37cUserPoolId": {
+      "Type": "String",
+      "Default": "authroomhub62f7b37cUserPoolId"
+    },
+    "authroomhub62f7b37cIdentityPoolId": {
+      "Type": "String",
+      "Default": "authroomhub62f7b37cIdentityPoolId"
+    },
+    "authroomhub62f7b37cAppClientID": {
+      "Type": "String",
+      "Default": "authroomhub62f7b37cAppClientID"
+    },
+    "authroomhub62f7b37cAppClientIDWeb": {
+      "Type": "String",
+      "Default": "authroomhub62f7b37cAppClientIDWeb"
+    }
+  },
+  "Conditions": {
+    "ShouldNotCreateEnvResources": {
+      "Fn::Equals": [
+        {
+          "Ref": "env"
+        },
+        "NONE"
+      ]
+    }
+  },
+  "Resources": {
+    "RoomHubUserPoolGroup": {
+      "Type": "AWS::Cognito::UserPoolGroup",
+      "Properties": {
+        "Description": "override success",
+        "GroupName": "RoomHubUserPool",
+        "Precedence": 1,
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "RoomHubUserPoolGroupRole",
+            "Arn"
+          ]
+        },
+        "UserPoolId": {
+          "Ref": "authroomhub62f7b37cUserPoolId"
+        }
+      }
+    },
+    "RoomHubUserPoolGroupRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "",
+              "Effect": "Allow",
+              "Principal": {
+                "Federated": "cognito-identity.amazonaws.com"
+              },
+              "Action": "sts:AssumeRoleWithWebIdentity",
+              "Condition": {
+                "StringEquals": {
+                  "cognito-identity.amazonaws.com:aud": {
+                    "Ref": "authroomhub62f7b37cIdentityPoolId"
+                  }
+                },
+                "ForAnyValue:StringLike": {
+                  "cognito-identity.amazonaws.com:amr": "authenticated"
+                }
+              }
+            }
+          ]
+        },
+        "RoleName": {
+          "Fn::Join": [
+            "",
+            [
+              {
+                "Ref": "authroomhub62f7b37cUserPoolId"
+              },
+              "-RoomHubUserPoolGroupRole"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "RoomHubUserPoolGroupRole": {
+      "Value": {
+        "Fn::GetAtt": [
+          "RoomHubUserPoolGroupRole",
+          "Arn"
+        ]
+      }
+    }
+  }
+}

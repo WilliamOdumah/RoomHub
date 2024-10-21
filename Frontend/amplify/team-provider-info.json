@@ -1,0 +1,39 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-roomhub-dev-139d3-authRole",
+      "UnauthRoleArn": "arn:aws:iam::396608783433:role/amplify-roomhub-dev-139d3-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::396608783433:role/amplify-roomhub-dev-139d3-authRole",
+      "Region": "ca-central-1",
+      "DeploymentBucketName": "amplify-roomhub-dev-139d3-deployment",
+      "UnauthRoleName": "amplify-roomhub-dev-139d3-unauthRole",
+      "StackName": "amplify-roomhub-dev-139d3",
+      "StackId": "arn:aws:cloudformation:us-east-1:396608783433:stack/amplify-roomhub-dev-139d3/184f76a0-7ec6-11ef-83be-128d7f71f141",
+      "AmplifyAppId": "d38jc098zmaada"
+    },
+    "categories": {
+      "auth": {
+        "roomhub62f7b37c": {}
+      }
+    }
+  },
+  "roomhub": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-roomhub-roomhub-e4ac8-authRole",
+      "UnauthRoleArn": "arn:aws:iam::396608783433:role/amplify-roomhub-roomhub-e4ac8-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::396608783433:role/amplify-roomhub-roomhub-e4ac8-authRole",
+      "Region": "ca-central-1",
+      "DeploymentBucketName": "amplify-roomhub-roomhub-e4ac8-deployment",
+      "UnauthRoleName": "amplify-roomhub-roomhub-e4ac8-unauthRole",
+      "StackName": "amplify-roomhub-roomhub-e4ac8",
+      "StackId": "arn:aws:cloudformation:ca-central-1:396608783433:stack/amplify-roomhub-roomhub-e4ac8/35eae990-7f9f-11ef-a059-0e4d74e556d1",
+      "AmplifyAppId": "d2f02j6pln3z71"
+    },
+    "categories": {
+      "auth": {
+        "roomhub62f7b37c": {},
+        "userPoolGroups": {}
+      }
+    }
+  }
+}
