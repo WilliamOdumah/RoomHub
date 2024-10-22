@@ -1,0 +1,12 @@
+{
+  "dev": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "C:\\Users\\willi\\.amplify\\awscloudformation\\g7s7twp9zx"
+  },
+  "roomhub": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "C:\\Users\\willi\\.amplify\\awscloudformation\\v6q9EqqprL"
+  }
+}

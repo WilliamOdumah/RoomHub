@@ -11,6 +11,12 @@ const { v4: uuidv4 } = require("uuid");
  */
 class NotificationHandler {
     /**
+     * The room persistence object used by the room handler.
+     * @type {string}
+     * @private
+     */
+    #room_persistence;
+    /**
      * The notification object used by the handler
      * @type {String}
      * @private
@@ -29,7 +35,12 @@ class NotificationHandler {
      */
     constructor() {
         this.#user_persistence = Services.get_user_persistence();
+        this.#room_persistence = Services.get_room_persistence();
         this.#notification_persistence = Services.get_notification_persistence();
+    }
+
+    get_room_persistence() {
+        return this.#room_persistence;
     }
 
     get_notification_persistence() {
@@ -53,6 +64,31 @@ class NotificationHandler {
     }
 
     /**
+     * Check if user id is valid
+     * @param {String} user_string "A string representing user id to be validated"
+     * @returns {Boolean} "Returns true if valid user id, return false if invalid"
+     */
+    #is_valid_user_string(user_string) {
+        if (user_string.length <= 0 || user_string === undefined) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Check if notification type is valid
+     * @param {String} type "A string representing type to be validated"
+     * @returns {Boolean} "Returns true if valid type, return false if invalid"
+     */
+    #is_valid_type(type) {
+        // for now we just have 2 types of notification (join-request or announcement)
+        if (type === "join-request" || type === "announcement") {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Add a new notification to the persistence Layer
      * @async
      * @param {Express.request} request "Request received by the router"
@@ -65,18 +101,24 @@ class NotificationHandler {
             const from = request.body.from;
             const to = request.body.to;
 
+            if (!this.#is_valid_user_string(to)) {
+                return response.status(404).json({ message: "User not found" });
+            }
+
             // need to verify if sender and receiver exist in database and also sender have a room
             let sender = await this.#user_persistence.get_user(from);
-            const room_id = await this.#user_persistence.get_room_id(from);
+            // currently we have only one type "Join-request"
             let receiver = await this.#user_persistence.get_user(to);
+
             if (sender === null || receiver === null) {
-                response.status(404).json({ message: "User not found" });
+                return response.status(404).json({ message: "User not found" });
             }
             const type = request.body.type;
+            let room_id = await this.#user_persistence.get_room_id(to);
             const msg = this.generate_message(from, to, type);
             if (!this.#is_valid_msg(msg)) {
                 // give a certain type of response
-                response.status(400).json({ message: "Error Creating Notification - Message is empty" });
+                return response.status(400).json({ message: "Error Creating Notification - Message is empty" });
             }
             let new_notification_status = await this.#notification_persistence.generate_new_notification(
                 notif_id,
@@ -90,14 +132,14 @@ class NotificationHandler {
 
             if (new_notification_status === "SUCCESS") {
                 // assign new notification to both sender and receiver
-                await this.#user_persistence.update_user_notifications(notif_id, from);
+                // await this.#user_persistence.update_user_notifications(notif_id, from);
                 await this.#user_persistence.update_user_notifications(notif_id, to);
-                response.status(200).json({ message: "Successfully Created the new notification" });
+                return response.status(200).json({ message: "Successfully Created the new notification" });
             } else {
-                response.status(500).json({ message: "Retry creating the notification" });
+                return response.status(500).json({ message: "Retry creating the notification" });
             }
         } catch (error) {
-            response.status(500).json({ message: error.message });
+            return response.status(500).json({ message: error.message });
         }
     }
 
@@ -109,8 +151,8 @@ class NotificationHandler {
      * @returns {String} "notification message"
      */
     generate_message(from, to, type) {
-        if (type === "invite") {
-            return this.generate_invite_message(from, to);
+        if (type == "join-request") {
+            return this.generate_room_request_message(from);
         }
         return "";
     }
@@ -123,6 +165,91 @@ class NotificationHandler {
      */
     generate_invite_message(from, to) {
         return `${from} invites ${to} to join their room`;
+    }
+
+    /**
+     * Create an invite message based on sender, receiver
+     * @param {String} from "a sender ID"
+     * @returns {String} "notification invite message"
+     */
+    generate_room_request_message(from) {
+        return `${from} requests to join your room`;
+    }
+
+    /**
+     * Add some new announcements to the persistence Layer
+     * @async
+     * @param {Express.request} request "Request received by the router"
+     * @param {Express.response} response "Response to be sent back to the service that sent the original request"
+     */
+    async send_announcement(request, response) {
+        try {
+            const status = "unread";
+            const from = request.body.from;
+            const message = request.body.message;
+            const type = request.body.type;
+
+            if (!this.#is_valid_user_string(from)) {
+                return response.status(404).json({ message: "User not found" });
+            }
+
+            // need to verify if sender and receiver exist in database and also sender have a room
+            let sender = await this.#user_persistence.get_user(from);
+
+            if (sender === null) {
+                return response.status(404).json({ message: "User not found" });
+            }
+
+            if (!this.#is_valid_msg(message)) {
+                return response.status(400).json({ message: "Message is empty" });
+            }
+
+            if (!this.#is_valid_type(type)) {
+                return response.status(400).json({ message: "Notification type is invalid" });
+            }
+
+            let room_id = await this.#user_persistence.get_room_id(from);
+            // get the total number of users in the room
+            let users = await this.#room_persistence.get_room_users(room_id);
+            // remove the sender id
+            users.delete(from);
+            // the room only have one user which is sender
+            if (users.size === 0) {
+                return response.status(200).json({ message: "You are the only person in this room" });
+            } else {
+                // convert set into array
+                let user_list = [...users];
+                let success = true;
+                for (let item of user_list) {
+                    // generate a new id for each notification received of each users
+                    const notif_id = uuidv4();
+                    // create an annoucement for everone in the room except sender
+                    let notification_status = await this.#notification_persistence.generate_new_notification(
+                        notif_id,
+                        message,
+                        status,
+                        from,
+                        item,
+                        type,
+                        room_id,
+                    );
+                    if (notification_status === "SUCCESS") {
+                        // update the new notif into user table except sender
+                        await this.#user_persistence.update_user_notifications(notif_id, item);
+                    } else {
+                        success = false;
+                        break;
+                    }
+                }
+                if (success) {
+                    return response.status(200).json({ message: "Send announcement successfully" });
+                } else {
+                    return response.status(500).json({ message: "Retry creating the notification" });
+                }
+            }
+        } catch (error) {
+            return response.status(500).json({ message: error.message });
+        }
     }
 }
 

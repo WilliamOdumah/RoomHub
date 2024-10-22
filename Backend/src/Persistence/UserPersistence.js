@@ -160,7 +160,8 @@ class UserPersistence {
 
         let notification = response.Item.notification;
         if (notification === undefined) {
-            throw new Error(`User ${user_id} doesn't have a notification yet`);
+            // throw new Error(`User ${user_id} doesn't have a notification yet`);
+            notification = new Set([]);
         }
         return notification;
     }
@@ -206,6 +207,50 @@ class UserPersistence {
                 ":room_id": room_id,
             },
             ConditionExpression: "attribute_exists(user_id)",
+            ReturnValues: "NONE",
+        });
+
+        await this.#doc_client.send(update_command);
+    }
+
+    /**
+     * Deletes a notification from a users set of notification
+     * @param {String} notification_id "The unique identifier for the notification"
+     * @param {String} user_id "The id for the user who now belongs to this room"
+     */
+    async update_notification_set(notification_id, user_id) {
+        const update_command = new UpdateCommand({
+            TableName: "User",
+            Key: {
+                user_id: user_id,
+            },
+            UpdateExpression: "DELETE notification :notification_id",
+            ExpressionAttributeValues: {
+                ":notification_id": new Set([notification_id]),
+            },
+            ConditionExpression: "attribute_exists(user_id)",
+            ReturnValues: "NONE",
+        });
+
+        await this.#doc_client.send(update_command);
+    }
+
+    /**
+     * Use Update command to delete specific room for specific user
+     * @param {String} room_id "The unique identifier for the room"
+     * @param {String} user_id "The unique identifier for the user"
+     */
+    async remove_room_id(room_id, user_id) {
+        const update_command = new UpdateCommand({
+            TableName: "User",
+            Key: {
+                user_id: user_id,
+            },
+            UpdateExpression: "REMOVE room_id",
+            ConditionExpression: "attribute_exists(user_id) AND room_id = :room_id", // Optional: Ensures you only remove the room_id if it matches the provided value.
+            ExpressionAttributeValues: {
+                ":room_id": room_id,
+            },
             ReturnValues: "NONE",
         });
 

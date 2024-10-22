@@ -1,0 +1,83 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-roomhub-roomhub-e4ac8-authRole",
+      "UnauthRoleArn": "arn:aws:iam::396608783433:role/amplify-roomhub-roomhub-e4ac8-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::396608783433:role/amplify-roomhub-roomhub-e4ac8-authRole",
+      "Region": "ca-central-1",
+      "DeploymentBucketName": "amplify-roomhub-roomhub-e4ac8-deployment",
+      "UnauthRoleName": "amplify-roomhub-roomhub-e4ac8-unauthRole",
+      "StackName": "amplify-roomhub-roomhub-e4ac8",
+      "StackId": "arn:aws:cloudformation:ca-central-1:396608783433:stack/amplify-roomhub-roomhub-e4ac8/35eae990-7f9f-11ef-a059-0e4d74e556d1",
+      "AmplifyAppId": "d2f02j6pln3z71"
+    }
+  },
+  "auth": {
+    "roomhub62f7b37c": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "lastPushTimeStamp": "2024-10-01T03:01:53.940Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-roomhub-roomhub-e4ac8-deployment/amplify-cfn-templates/auth/roomhub62f7b37c-cloudformation-template.json",
+        "logicalId": "authroomhub62f7b37c"
+      },
+      "output": {
+        "UserPoolId": "ca-central-1_Zf1Le0mD8",
+        "AppClientIDWeb": "5tcag4re9dqct6lmb82o69vju",
+        "AppClientID": "465tpfq3gg5qs2d75u9c9fcm2r",
+        "IdentityPoolId": "ca-central-1:3783d3fa-7a70-4cb2-a0aa-d420bbe971be",
+        "UserPoolArn": "arn:aws:cognito-idp:ca-central-1:396608783433:userpool/ca-central-1_Zf1Le0mD8",
+        "IdentityPoolName": "roomhub62f7b37c_identitypool_62f7b37c__roomhub",
+        "UserPoolName": "roomhub62f7b37c_userpool_62f7b37c"
+      },
+      "lastPushDirHash": "UfBf6F4FTZTTd8E0CDwwQ2b9Kiw="
+    },
+    "userPoolGroups": {
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "roomhub62f7b37c",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID",
+            "IdentityPoolId"
+          ]
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito-UserPool-Groups",
+      "lastPushTimeStamp": "2024-10-01T03:01:53.940Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-roomhub-roomhub-e4ac8-deployment/amplify-cfn-templates/auth/userPoolGroups-cloudformation-template.json",
+        "logicalId": "authuserPoolGroups"
+      },
+      "output": {
+        "RoomHubUserPoolGroupRole": "arn:aws:iam::396608783433:role/ca-central-1_Zf1Le0mD8-RoomHubUserPoolGroupRole"
+      },
+      "lastPushDirHash": "SQwYp9jMbZOh8XF/cNWvu5mOe2g="
+    }
+  }
+}

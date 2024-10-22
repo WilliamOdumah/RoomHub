@@ -1,0 +1,26 @@
+{
+  "aws_project_region": "ca-central-1",
+  "aws_cognito_identity_pool_id": "ca-central-1:3783d3fa-7a70-4cb2-a0aa-d420bbe971be",
+  "aws_cognito_region": "ca-central-1",
+  "aws_user_pools_id": "ca-central-1_Zf1Le0mD8",
+  "aws_user_pools_web_client_id": "5tcag4re9dqct6lmb82o69vju",
+  "oauth": {},
+  "aws_cognito_username_attributes": [
+    "EMAIL"
+  ],
+  "aws_cognito_social_providers": [],
+  "aws_cognito_signup_attributes": [
+    "EMAIL"
+  ],
+  "aws_cognito_mfa_configuration": "OFF",
+  "aws_cognito_mfa_types": [
+    "SMS"
+  ],
+  "aws_cognito_password_protection_settings": {
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": []
+  },
+  "aws_cognito_verification_mechanisms": [
+    "EMAIL"
+  ]
+}

@@ -44,5 +44,23 @@ Users can rate and provide detailed feedback about their roommates, offering val
   A minimal and flexible Node.js web application framework that is ideal for handling HTTP requests and server-side logic efficiently, making it a suitable choice for API development.
 
   * **Database:**
-    **Amazon RDS:**
-    A managed relational database service that supports MySQL, offering automated backups, scaling, and high availability. This will serve as the primary database for the app, ensuring robust data management and reliability.
+    **DynamoDb:**
+    A managed nosql database service service that has direct javascript compatibility, offering automated backups, scaling, and high availability. This will serve as the primary database for the app, ensuring robust data management and reliability.
+
+### How to Run the Project
+To get started with the RoomHub application, follow the instructions in the respective README files for the [Front End](link-to-frontend-readme) and [Back End](link-to-backend-readme). These files provide detailed steps on setting up the development environment, running the project locally, and executing tests.
+
+### Web Front End:
+- Instructions for running and testing the React front-end are available in the [Front End README](https://github.com/WilliamOdumah/RoomHub/blob/main/Frontend/README.md).
+
+### Flutter Front End:
+- Instructions for running and testing the Flutter front-end are available in the [Flutter Front End README](https://github.com/WilliamOdumah/RoomHub/blob/main/README.md).
+
+### Back End:
+- Steps for setting up the Express backend and performing tests are documented in the [Back End README](https://github.com/WilliamOdumah/RoomHub/tree/main/Backend/README.md).
+
+### Meeting Minutes:
+- [Meeting Minutes](https://docs.google.com/document/d/1gmPyqcMPgaCIxmgW3wgfEdduZb-75aF9UhfTTLr__OI/edit?usp=sharing)
+
+### Sequence Diagrams:
+- [Sequence Diagrams](https://docs.google.com/document/d/1M3B92XEyDP4L9LY-5olZOBhAJlwPlI1XnUZCIL129f8/edit?usp=sharing)

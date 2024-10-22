@@ -24,7 +24,7 @@ class UserInfoHandler {
     #room_persistence;
 
     /**
-     * The room persistence object used by the info handler.
+     * The notificaion persistence object used by the info handler.
      * @type {string}
      * @private
      */
@@ -72,7 +72,7 @@ class UserInfoHandler {
      */
     async create_user(request, response) {
         try {
-            const user_id = request.body.id;
+            const user_id = request.body.id.trim().toLowerCase();
             if (!this.#is_valid_id(user_id)) {
                 // give a certain type of response
                 return response.status(400).json({ message: "Error Creating User- User id is invalid" });
@@ -87,7 +87,7 @@ class UserInfoHandler {
     /**
      * Get a users room
      * @async
-     * @param {Express.request} request "Reequest received by the router"
+     * @param {Express.request} request "Request received by the router"
      * @param {Express.response} response "Response to be sent back to the service that sent the original request"
      * @returns {Express.response} "A response object which contains the response to the request."
      */
@@ -146,6 +146,173 @@ class UserInfoHandler {
                         result.push(notif_item);
                     }
                     response.status(200).json({ All_Notifications: result });
+                }
+            }
+        } catch (error) {
+            response.status(500).json({ message: error.message });
+        }
+    }
+
+    /**
+     * Get a message notify user left the room
+     * @async
+     * @param {Express.request} request "Request received by the router"
+     * @param {Express.response} response "Response to be sent back to the service that sent the original request"
+     * @returns {Express.response} "A response object which contains the response to the request."
+     */
+    async leave_user_room(request, response) {
+        try {
+            let user_id = request.params.id.trim().toLowerCase();
+            // validate user_id
+            if (!this.#is_valid_id(user_id)) {
+                response.status(400).json({ message: "This username is invalid" });
+            } else {
+                // if valid user id
+                let user = await this.#user_persistence.get_user(user_id);
+                if (user === null) {
+                    response.status(404).json({ message: "User not found" });
+                } else {
+                    // get the room id from the given user
+                    let room_id = await this.#user_persistence.get_room_id(user_id);
+                    // get the total number of users in the room
+                    let users = await this.#room_persistence.get_room_users(room_id);
+                    let total_users = users.size;
+                    // the room only have 1 user
+                    if (total_users === 1) {
+                        // delete room
+                        await this.#room_persistence.delete_room(room_id);
+                        // remove room_id from the specific user
+                        await this.#user_persistence.remove_room_id(room_id, user_id);
+                        response.status(200).json({
+                            message: "The room is being deleted and user leave the room successfully",
+                        });
+                        // more than 1 user in the room
+                    } else {
+                        // remove user_id from the specific room
+                        await this.#room_persistence.remove_user_id(user_id, room_id);
+                        // remove room_id from the specific user
+                        await this.#user_persistence.remove_room_id(room_id, user_id);
+                        response.status(200).json({ message: "User leave the room successfully" });
+                    }
+                }
+            }
+        } catch (error) {
+            response.status(500).json({ message: error.message });
+        }
+    }
+
+    /**
+     * Get a warning message if user want to leave the room
+     * @async
+     * @param {Express.request} request "Request received by the router"
+     * @param {Express.response} response "Response to be sent back to the service that sent the original request"
+     * @returns {Express.response} "A response message which contains the response to the request."
+     */
+    async get_user_warning(request, response) {
+        try {
+            let user_id = request.params.id.trim().toLowerCase();
+            // validate user_id
+            if (!this.#is_valid_id(user_id)) {
+                response.status(400).json({ message: "This username is invalid" });
+            } else {
+                // if valid user id
+                let user = await this.#user_persistence.get_user(user_id);
+                if (user === null) {
+                    response.status(404).json({ message: "User not found" });
+                } else {
+                    // get the room id from the given user
+                    let room_id = await this.#user_persistence.get_room_id(user_id);
+                    // get the total number of users in the room
+                    let users = await this.#room_persistence.get_room_users(room_id);
+                    let total_users = users.size;
+                    // the room only have 1 user
+                    if (total_users === 1) {
+                        response.status(200).json({ message: "Warning: If you leave, the room will be deleted!" });
+                        // more than 1 user in the room
+                    } else {
+                        response.status(200).json({ message: "Warning: Are you sure want to leave this room!" });
+                    }
+                }
+            }
+        } catch (error) {
+            response.status(500).json({ message: error.message });
+        }
+    }
+
+    /**
+     * Get a message notify if you have roommate or not
+     * @async
+     * @param {Express.request} request "Request received by the router"
+     * @param {Express.response} response "Response to be sent back to the service that sent the original request"
+     * @returns {Express.response} "A response message which contains the response to the request."
+     */
+    async get_roommate(request, response) {
+        try {
+            let user_id = request.params.id.trim().toLowerCase();
+            // validate user_id
+            if (!this.#is_valid_id(user_id)) {
+                response.status(400).json({ message: "This username is invalid" });
+            } else {
+                // if valid user id
+                let user = await this.#user_persistence.get_user(user_id);
+                if (user === null) {
+                    response.status(404).json({ message: "User not found" });
+                } else {
+                    // get the room id from the given user
+                    let room_id = await this.#user_persistence.get_room_id(user_id);
+                    // get the total number of users in the room
+                    let users = await this.#room_persistence.get_room_users(room_id);
+                    let total_users = users.size;
+                    // the room only have 1 user
+                    if (total_users === 1) {
+                        response.status(200).json({ message: "You have no roommate" });
+                        // more than 1 user in the room
+                    } else {
+                        response.status(200).json({ message: "You have at least one roommate" });
+                    }
+                }
+            }
+        } catch (error) {
+            response.status(500).json({ message: error.message });
+        }
+    }
+
+    /**
+     * Delete a notification base on user_id and notification_id
+     * @async
+     * @param {Express.request} request "Request received by the router"
+     * @param {Express.response} response "Response to be sent back to the service that sent the original request"
+     * @returns {Express.response} "A response message which contains the response to the request."
+     */
+    async delete_notification(request, response) {
+        try {
+            let user_id = request.params.id.trim().toLowerCase();
+            let notif_id = request.params.notif_id.trim().toLowerCase();
+            // validate user_id
+            if (!this.#is_valid_id(user_id)) {
+                return response.status(400).json({ message: "This username is invalid" });
+            }
+            if (!this.#is_valid_id(notif_id)) {
+                return response.status(400).json({ message: "This notification id is invalid" });
+            } else {
+                // if valid user id and notification id
+                let user = await this.#user_persistence.get_user(user_id);
+                if (user === null) {
+                    response.status(404).json({ message: "User not found" });
+                } else {
+                    let notifications = await this.#user_persistence.get_notification(user_id);
+                    // convert set into array
+                    let notif_list = [...notifications];
+                    // check whether the notification is existed
+                    if (notif_list.includes(notif_id)) {
+                        // delete notification from notification table
+                        await this.#notification_persistence.delete_notification(notif_id);
+                        // delete notification from user table
+                        await this.#user_persistence.update_notification_set(notif_id, user_id);
+                        response.status(200).json({ message: "Notification deleted successfully" });
+                    } else {
+                        response.status(404).json({ message: "Notification not found" });
+                    }
                 }
             }
         } catch (error) {

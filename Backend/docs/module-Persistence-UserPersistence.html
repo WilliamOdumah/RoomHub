@@ -31,7 +31,7 @@
         <h2><span class="attribs"><span class="type-signature"></span></span>
             <span class="ancestors"><a href="module-Persistence.html">Persistence</a>~</span>UserPersistence<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">Represents the user persistence layer that is linked to the user table in the database.</div>
+            <div class="class-description"><p>Represents the user persistence layer that is linked to the user table in the database.</p></div>
         
     
 </header>
@@ -54,7 +54,7 @@
 
 
 <div class="description">
-    Create a new UserPersistence object
+    <p>Create a new UserPersistence object</p>
 </div>
 
 
@@ -162,7 +162,7 @@
 
 
 <div class="description">
-    Uses dynamodb GetCommand to get list of notification from existing user from database
+    <p>Uses dynamodb GetCommand to get list of notification from existing user from database</p>
 </div>
 
 
@@ -214,7 +214,7 @@
 
             
 
-            <td class="description last">"New user's name to be added to the database"</td>
+            <td class="description last"><p>&quot;New user's name to be added to the database&quot;</p></td>
         </tr>
 
     
@@ -284,7 +284,7 @@
 
         
 <div class="param-desc">
-    "Return list of notification or throw new error if no notification for exist user"
+    <p>&quot;Return list of notification or throw new error if no notification for exist user&quot;</p>
 </div>
 
 
@@ -321,7 +321,7 @@
 
 
 <div class="description">
-    Uses dynamodb GetCommand to get room ID from existing user from database
+    <p>Uses dynamodb GetCommand to get room ID from existing user from database</p>
 </div>
 
 
@@ -373,7 +373,7 @@
 
             
 
-            <td class="description last">"New user's name to be added to the database"</td>
+            <td class="description last"><p>&quot;New user's name to be added to the database&quot;</p></td>
         </tr>
 
     
@@ -443,7 +443,7 @@
 
         
 <div class="param-desc">
-    "Return room ID or throw new error if no room for exist user"
+    <p>&quot;Return room ID or throw new error if no room for exist user&quot;</p>
 </div>
 
 
@@ -480,7 +480,7 @@
 
 
 <div class="description">
-    Uses dynamodb GetCommand to get existing user from database
+    <p>Uses dynamodb GetCommand to get existing user from database</p>
 </div>
 
 
@@ -532,7 +532,7 @@
 
             
 
-            <td class="description last">"New user's name to be added to the database"</td>
+            <td class="description last"><p>&quot;New user's name to be added to the database&quot;</p></td>
         </tr>
 
     
@@ -602,7 +602,7 @@
 
         
 <div class="param-desc">
-    "Returns a user object or null if no user exists"
+    <p>&quot;Returns a user object or null if no user exists&quot;</p>
 </div>
 
 
@@ -631,6 +631,166 @@
     
 
     
+    <h4 class="name" id="remove_room_id"><span class="type-signature">(async) </span>remove_room_id<span class="signature">(room_id, user_id)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Use Update command to delete specific room for specific user</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>room_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>&quot;The unique identifier for the room&quot;</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>user_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>&quot;The unique identifier for the user&quot;</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Persistence_UserPersistence.js.html">Persistence/UserPersistence.js</a>, <a href="Persistence_UserPersistence.js.html#line243">line 243</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="save_new_user"><span class="type-signature">(async) </span>save_new_user<span class="signature">(user_name)</span><span class="type-signature"> &rarr; {JSON}</span></h4>
     
 
@@ -639,7 +799,7 @@
 
 
 <div class="description">
-    Uses dynamodb PutCommand to add the new user to the database
+    <p>Uses dynamodb PutCommand to add the new user to the database</p>
 </div>
 
 
@@ -691,7 +851,7 @@
 
             
 
-            <td class="description last">"New user's name to be added to the database"</td>
+            <td class="description last"><p>&quot;New user's name to be added to the database&quot;</p></td>
         </tr>
 
     
@@ -761,7 +921,7 @@
 
         
 <div class="param-desc">
-    "Returns a json object with 2 keys; status and message. "
+    <p>&quot;Returns a json object with 2 keys; status and message. &quot;</p>
 </div>
 
 
@@ -790,6 +950,166 @@
     
 
     
+    <h4 class="name" id="update_notification_set"><span class="type-signature">(async) </span>update_notification_set<span class="signature">(notification_id, user_id)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Deletes a notification from a users set of notification</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>notification_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>&quot;The unique identifier for the notification&quot;</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>user_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>&quot;The id for the user who now belongs to this room&quot;</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Persistence_UserPersistence.js.html">Persistence/UserPersistence.js</a>, <a href="Persistence_UserPersistence.js.html#line221">line 221</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="update_user_notifications"><span class="type-signature">(async) </span>update_user_notifications<span class="signature">(notif_id, user_id)</span><span class="type-signature"></span></h4>
     
 
@@ -798,7 +1118,7 @@
 
 
 <div class="description">
-    Updates the user notifications field with the new notification id
+    <p>Updates the user notifications field with the new notification id</p>
 </div>
 
 
@@ -850,7 +1170,7 @@
 
             
 
-            <td class="description last">"The unique identifier for the notification"</td>
+            <td class="description last"><p>&quot;The unique identifier for the notification&quot;</p></td>
         </tr>
 
     
@@ -873,7 +1193,7 @@
 
             
 
-            <td class="description last">"The id for the user who now belongs to this notification"</td>
+            <td class="description last"><p>&quot;The id for the user who now belongs to this notification&quot;</p></td>
         </tr>
 
     
@@ -914,7 +1234,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Persistence_UserPersistence.js.html">Persistence/UserPersistence.js</a>, <a href="Persistence_UserPersistence.js.html#line173">line 173</a>
+        <a href="Persistence_UserPersistence.js.html">Persistence/UserPersistence.js</a>, <a href="Persistence_UserPersistence.js.html#line174">line 174</a>
     </li></ul></dd>
     
 
@@ -958,7 +1278,7 @@
 
 
 <div class="description">
-    Updates the users room_id field with the new room id
+    <p>Updates the users room_id field with the new room id</p>
 </div>
 
 
@@ -1010,7 +1330,7 @@
 
             
 
-            <td class="description last">"The unique identifier for the room"</td>
+            <td class="description last"><p>&quot;The unique identifier for the room&quot;</p></td>
         </tr>
 
     
@@ -1033,7 +1353,7 @@
 
             
 
-            <td class="description last">"The id for the user who now belongs to this room"</td>
+            <td class="description last"><p>&quot;The id for the user who now belongs to this room&quot;</p></td>
         </tr>
 
     
@@ -1074,7 +1394,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Persistence_UserPersistence.js.html">Persistence/UserPersistence.js</a>, <a href="Persistence_UserPersistence.js.html#line198">line 198</a>
+        <a href="Persistence_UserPersistence.js.html">Persistence/UserPersistence.js</a>, <a href="Persistence_UserPersistence.js.html#line199">line 199</a>
     </li></ul></dd>
     
 
@@ -1120,13 +1440,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Handler.html">Handler</a></li><li><a href="module-Notification.html">Notification</a></li><li><a href="module-Persistence.html">Persistence</a></li><li><a href="module-Room.html">Room</a></li><li><a href="module-Services.html">Services</a></li><li><a href="module-User.html">User</a></li></ul><h3>Classes</h3><ul><li><a href="module-Handler-NotificationHandler.html">NotificationHandler</a></li><li><a href="module-Handler-RoomHandler.html">RoomHandler</a></li><li><a href="module-Handler-UserInfoHandler.html">UserInfoHandler</a></li><li><a href="module-Persistence-NotificationPersistence.html">NotificationPersistence</a></li><li><a href="module-Persistence-RoomPersistence.html">RoomPersistence</a></li><li><a href="module-Persistence-UserPersistence.html">UserPersistence</a></li><li><a href="module-Services-Services.html">Services</a></li></ul><h3>Global</h3><ul><li><a href="global.html#studentName">studentName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Handler.html">Handler</a></li><li><a href="module-Persistence.html">Persistence</a></li><li><a href="module-Services.html">Services</a></li></ul><h3>Namespaces</h3><ul><li><a href="Notification.html">Notification</a></li><li><a href="Room.html">Room</a></li><li><a href="User.html">User</a></li></ul><h3>Classes</h3><ul><li><a href="module-Handler-NotificationHandler.html">NotificationHandler</a></li><li><a href="module-Handler-RoomHandler.html">RoomHandler</a></li><li><a href="module-Handler-UserInfoHandler.html">UserInfoHandler</a></li><li><a href="module-Persistence-NotificationPersistence.html">NotificationPersistence</a></li><li><a href="module-Persistence-RoomPersistence.html">RoomPersistence</a></li><li><a href="module-Persistence-UserPersistence.html">UserPersistence</a></li><li><a href="module-Services-Services.html">Services</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Mon Oct 07 2024 16:08:12 GMT-0500 (Central Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sun Oct 20 2024 19:57:07 GMT-0500 (Central Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

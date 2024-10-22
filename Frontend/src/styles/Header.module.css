@@ -1,0 +1,48 @@
+.notificationWrapper {
+    position: relative;
+  }
+  
+  .redDot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+  }
+  
+  .logo {
+    margin-left: 30px;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  
+  .header {
+    position: sticky;
+    top: 0px;
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #f0f0f0;
+    z-index: 1000;
+  }
+  
+  .logo img {
+    width: 160px;
+  }
+  
+  .icons {
+    display: flex;
+    gap: 40px;
+    margin-right: 60px;
+  }
+  
+  .icon {
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+  }
+  

@@ -23,6 +23,12 @@ class RoomHandler {
      * @private
      */
     #user_persistence;
+    /**
+     * The room persistence object used by the info handler.
+     * @type {string}
+     * @private
+     */
+    #notification_persistence;
 
     /**
      * Create a new RoomHandler object
@@ -31,6 +37,7 @@ class RoomHandler {
     constructor() {
         this.#user_persistence = Services.get_user_persistence();
         this.#room_persistence = Services.get_room_persistence();
+        this.#notification_persistence = Services.get_notification_persistence();
     }
 
     get_room_persistence() {
@@ -133,12 +140,12 @@ class RoomHandler {
             const existing_roommate_id = request.body.existing_roommate.trim().toLowerCase();
             const new_roommate_id = request.body.new_roommate.trim().toLowerCase();
             const room_name = request.body.room_nm.trim().toLowerCase();
+            const notif_id = request.body.notification_id.trim();
 
             // validate existing roomates room matches with the room_name
             const user_persistence = this.#user_persistence;
             const old_roommate = await user_persistence.get_user(existing_roommate_id);
             const new_roommate = await user_persistence.get_user(new_roommate_id);
-
             if (old_roommate !== null && new_roommate !== null) {
                 const room_id = old_roommate.room_id;
                 if (room_id !== undefined) {
@@ -148,6 +155,8 @@ class RoomHandler {
                         // update the new_roommates room.
                         await this.#user_persistence.update_user_room(room_id, new_roommate_id);
                         await this.#room_persistence.add_new_roommate(room_id, new_roommate_id);
+                        await this.#notification_persistence.delete_notification(notif_id);
+                        await this.#user_persistence.update_notification_set(notif_id, existing_roommate_id);
                         response.status(200).json({ message: "New Roommate successfully added" });
                     } else {
                         // basically denying access to that room resource
