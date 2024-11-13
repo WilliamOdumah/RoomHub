@@ -51,7 +51,7 @@ function validateDate(date) {
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Set the time to 00:00:00 to only compare dates
     // Compare the input date with today's date
-    if (inputDate < today) throw new Error(`Invalid Date`); // Returns false if inputDate is in the past
+    if (inputDate > today) throw new Error(`Invalid Date`); // Returns false if inputDate is in the past
 }
 
 /**
