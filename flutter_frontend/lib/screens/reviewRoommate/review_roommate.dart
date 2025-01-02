@@ -108,43 +108,38 @@ class _ReviewFormState extends State<ReviewForm> {
       ),
       // Positioned custom header with back button and title
       Positioned(
-        top: 0.0, // Set to 0 so it stays at the top of the screen
-        left: 0.0,
-        right: 0.0,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 50), // Add padding for spacing
-          child: Stack(
-            children: [
-              // Back button to return to the previous screen
-              IconButton(
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                  size: 30,
+        top: 20.0,
+        left: 20.0,
+        right: 20.0,
+         child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Back button to return to the previous screen
+                IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Pop the current screen
+                  },
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop(); // Pop the current screen
-                },
-              ),
-              // Title text indicating the purpose of the screen
-              const Center(
-                child: Text(
-                  '\nRate \nYour Roommate',
-                  textAlign: TextAlign.center,
-                  style: TextStyle( 
+                // Title text indicating the purpose of the screen
+                const Text(
+                  '\nReview Your\nRoommate',
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
                       fontSize: 30,
                       color: Colors.white,
                       fontWeight: FontWeight.w900),
                 ),
-              ),
-
-            ],
+              ],
+            ),
           ),
-        ),
-      ),
       // Main content container for review form
       Padding(
-        padding: const EdgeInsets.only(top: 195.0), // Add top padding to avoid overlap
+        padding: const EdgeInsets.only(top: 160.0), // Add top padding to avoid overlap
         child: Container(
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
