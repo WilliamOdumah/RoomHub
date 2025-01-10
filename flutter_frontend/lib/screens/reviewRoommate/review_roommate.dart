@@ -128,7 +128,7 @@ class _ReviewFormState extends State<ReviewForm> {
                 ),
                 // Title text indicating the purpose of the screen
                 const Text(
-                  '\n\nReview Your\nRoommate',
+                  '\nReview Your\nRoommate',
                   textAlign: TextAlign.right,
                   style: TextStyle(
                       fontSize: 30,

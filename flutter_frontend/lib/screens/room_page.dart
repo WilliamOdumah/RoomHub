@@ -151,7 +151,6 @@ class _UserRoomState extends State<UserRoom> {
                                                 SharedExpensesPage(
                                               userId: widget.email,
                                               roomId: widget.roomID,
-                                              summary: summaryData!,
                                             ),
                                           ),
                                         );

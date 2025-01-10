@@ -14,12 +14,12 @@ import '../../utils/response_handler.dart';
 class SharedExpensesPage extends StatefulWidget {
   final String userId;
   final String roomId;
-  final Map<String, dynamic> summary;
+
   const SharedExpensesPage(
       {super.key,
       required this.userId,
       required this.roomId,
-      required this.summary});
+      });
 
   @override
   _SharedExpensesPageState createState() => _SharedExpensesPageState();
@@ -35,6 +35,7 @@ class _SharedExpensesPageState extends State<SharedExpensesPage> {
   }
 
   List<Transaction>? allTransactions;
+   Map<String, dynamic>? summaryData;
   // Sample transaction data
 
   double? owe;
@@ -195,7 +196,7 @@ class _SharedExpensesPageState extends State<SharedExpensesPage> {
                                   builder: (context) => SettleUp(
                                     email: widget.userId,
                                     roomId: widget.roomId,
-                                    summaryData: widget.summary,
+                                    summaryData: summaryData!,
                                   ),
                                 ),
                               );
@@ -223,7 +224,7 @@ class _SharedExpensesPageState extends State<SharedExpensesPage> {
                                     builder: (context) => ExpenseForm(
                                           email: widget.userId,
                                           roomId: widget.roomId,
-                                          summaryData: widget.summary,
+                                          summaryData: summaryData!,
                                         )),
                               );
                             },
@@ -473,6 +474,7 @@ class _SharedExpensesPageState extends State<SharedExpensesPage> {
           owe = double.parse(amountUserOwes.toStringAsFixed(2));
           owed = double.parse(amountUserIsOwed.toStringAsFixed(2));
           summaryMessages = jsonData['relationships'];
+          summaryData = jsonData;
           // allTransactions = transactions;
         });
         // result = transactions;
