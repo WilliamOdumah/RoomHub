@@ -38,7 +38,7 @@ class _ActionNotificationState extends ConsumerState<Header> {
       builder: (context) {
         return Container(
           color: Colors.grey[300],
-          height: 135,
+          height: 107,
           child: Column(
             children: [
               Container(
@@ -48,7 +48,7 @@ class _ActionNotificationState extends ConsumerState<Header> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 16.0, top: 20),
+                      padding: const EdgeInsets.only(left: 16.0, top: 10),
                       child: currRoomId != null ? IconButton(
                         icon: Icon(
                           Icons.menu,

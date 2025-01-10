@@ -141,11 +141,10 @@ class _ExpenseFormState extends State<ExpenseForm> {
           ),
           // Positioned header with back button and title
           Positioned(
-            top: 40.0,
             left: 20.0,
             right: 20.0,
             child: Padding(
-              padding: EdgeInsets.only(top: 50),
+              padding: EdgeInsets.only(top: 5),
               child: Stack(
                 children: [
                   // Back button to return to the previous screen
@@ -162,7 +161,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
                   // Title text indicating the purpose of the screen
                   const Center(
                     child: Text(
-                      'Transaction\n Management',
+                      '\nTransaction\n Management',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 30,
@@ -176,7 +175,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
           ),
           // Main content container for instructions and email input
           Padding(
-            padding: const EdgeInsets.only(top: 200.0),
+            padding: const EdgeInsets.only(top: 155.0),
             child: Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(

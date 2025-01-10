@@ -124,7 +124,7 @@ class Navbar extends ConsumerWidget {
         ),
           ListTile(
             // leave room action
-              leading: const Icon(Icons.exit_to_app),
+              leading: const Icon(Icons.reviews),
               title: Text("Review Roommates",
                   style: TextStyle(
                     color: theme.darkblue,

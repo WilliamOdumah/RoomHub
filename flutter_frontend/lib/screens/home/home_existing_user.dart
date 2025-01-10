@@ -161,7 +161,7 @@ class _OurHomeExistingState extends ConsumerState<OurHomeExisting> {
               ),
 
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(28.0),
                 child: ElevatedButton(
                   onPressed: () async {
                     logOut();

@@ -119,13 +119,11 @@ class _EditTaskFormState extends State<EditTaskForm> {
           ),
           // Positioned header with back button and title
           Positioned(
-            top: 40.0,
             left: 20.0,
             right: 20.0,
             child: Padding(
-              padding: EdgeInsets.only(top: 30),
+              padding: EdgeInsets.only(top: 5),
               child: Stack(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Back button to return to the previous screen
                   IconButton(
@@ -141,7 +139,7 @@ class _EditTaskFormState extends State<EditTaskForm> {
                   // Title text indicating the purpose of the screen
                   const Center(
                     child: Text(
-                      'Task Management',
+                      '\nTask\nManagement',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 30,
@@ -152,10 +150,8 @@ class _EditTaskFormState extends State<EditTaskForm> {
                 ],
               ),
             ),
-          ),
-          // Main content container for instructions and email input
-          Padding(
-            padding: const EdgeInsets.only(top: 200.0),
+          ),Padding(
+            padding: const EdgeInsets.only(top: 150.0),
             child: Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(

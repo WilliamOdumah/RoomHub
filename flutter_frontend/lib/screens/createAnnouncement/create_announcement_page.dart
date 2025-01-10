@@ -100,13 +100,15 @@ class _CreateAnnouncementState extends State<CreateAnnouncement> {
                   },
                 ),
                 // Title text indicating the purpose of the screen
-                const Text(
-                  '\nSend \nAnnouncement',
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900),
+                Center(
+                  child: const Text(
+                    '\nSend \nAnnouncement',
+                    textAlign: TextAlign.end,
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w900),
+                  ),
                 ),
               ],
             ),
@@ -131,11 +133,12 @@ class _CreateAnnouncementState extends State<CreateAnnouncement> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 40),
-                        child: Text("Select a preset announcement",
+                        padding: const EdgeInsets.only(top: 20, bottom: 10),
+                        child: Text("When an announcement is sent, all roommates receive a notification to ensure no one misses the update",
+                            textAlign: TextAlign.justify,
                             style: TextStyle(
                               color: theme.darkblue,
-                              fontSize: 25.0,
+                              fontSize: 15.0,
                               fontWeight: FontWeight.bold,)
                         ),
                       ),

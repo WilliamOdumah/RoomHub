@@ -44,7 +44,7 @@ class OurTheme {
             padding: WidgetStateProperty.all(
                 const EdgeInsets.symmetric(horizontal: 100.0, vertical: 12.0)),
             shape: WidgetStateProperty.all(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0))),
+                borderRadius: BorderRadius.circular(12.0))),
           ),
         ),
 

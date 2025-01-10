@@ -136,11 +136,10 @@ class _SettleUpState extends State<SettleUp> {
           ),
           // Positioned header with back button and title
           Positioned(
-            top: 40.0,
             left: 20.0,
             right: 20.0,
             child: Padding(
-              padding: EdgeInsets.only(top: 50),
+              padding: EdgeInsets.only(top: 5),
               child: Stack(
                 children: [
                   // Back button to return to the previous screen
@@ -157,7 +156,7 @@ class _SettleUpState extends State<SettleUp> {
                   // Title text indicating the purpose of the screen
                   const Center(
                     child: Text(
-                      'Transaction \nManagement',
+                      '\nTransaction \nManagement',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 30,
@@ -171,7 +170,7 @@ class _SettleUpState extends State<SettleUp> {
           ),
           // Main content container for instructions and email input
           Padding(
-            padding: const EdgeInsets.only(top: 200.0),
+            padding: const EdgeInsets.only(top: 155.0),
             child: Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(

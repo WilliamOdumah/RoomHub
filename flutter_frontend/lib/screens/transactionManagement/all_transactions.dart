@@ -67,7 +67,7 @@ class _SharedExpensesPageState extends State<SharedExpensesPage> {
           // Back button to return to the previous screen
           Padding(
             padding: const EdgeInsets.only(
-                left: 16.0, right: 0.0, top: 70, bottom: 0.0),
+                left: 16.0, right: 0.0, top: 20.0, bottom: 0.0),
             child: Stack(children: [
               IconButton(
                 icon: Icon(
@@ -86,12 +86,17 @@ class _SharedExpensesPageState extends State<SharedExpensesPage> {
                 },
               ),
               Center(
-                child: Text(
-                  widget.roomId,
-                  style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color: theme.darkblue),
+                child: 
+                Padding(
+                  padding: const EdgeInsets.only(
+                left: 0, right: 0.0, top: 20.0, bottom: 0.0),
+                  child: Text(
+                    widget.roomId,
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: theme.darkblue),
+                  ),
                 ),
               )
             ]),
@@ -125,7 +130,6 @@ class _SharedExpensesPageState extends State<SharedExpensesPage> {
                       // crossAxisAligment: CrossAxisAlignment.
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-
                         Column(
                           children: [
                             Text(

@@ -91,6 +91,7 @@ class _NotificationsState extends State<Notifications> {
 
   @override
   Widget build(BuildContext context) {
+    
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -105,10 +106,12 @@ class _NotificationsState extends State<Notifications> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 60), // Space for the back button
-                      Text(
-                        "Notifications",
-                        style: Theme.of(context).textTheme.headlineMedium,
+                      const SizedBox(height: 50), // Space for the back button
+                      Center(
+                        child: Text(
+                          "Notifications",
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
                       ),
                       const SizedBox(height: 10),
                       notificationItems == null
@@ -120,7 +123,7 @@ class _NotificationsState extends State<Notifications> {
                           : notificationItems!.isEmpty
                               ? Center(
                                   child: Text(
-                                    'No notifications',
+                                    '\n\nNo notifications',
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyLarge
@@ -137,9 +140,6 @@ class _NotificationsState extends State<Notifications> {
               ),
             ),
             Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
               child: Container(
                 padding: const EdgeInsets.symmetric(
                     vertical:
@@ -147,15 +147,19 @@ class _NotificationsState extends State<Notifications> {
 
                 // width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    //color: Colors.white,
                     borderRadius: BorderRadius.circular(50)),
                 child: Row(children: [
-                  BackButton(
-                    onPressed: () {
-                      Navigator.of(context)
-                          .pop(); // Go back to the previous screen
-                    },
+                 IconButton(
+                  icon:  Icon(
+                    Icons.arrow_back,
+                    color:theme.darkblue ,
+                    size: 30,
                   ),
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Pop the current screen
+                  },
+                ),
                 ]),
               ),
             ),
