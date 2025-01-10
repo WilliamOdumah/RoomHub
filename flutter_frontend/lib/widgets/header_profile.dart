@@ -63,7 +63,7 @@ class _ActionNotificationState extends ConsumerState<HeaderProfile> {
     return Builder(builder: (context) {
       return Container(
         color: Colors.grey[300],
-        height: 135,
+        height: 110,
         child: Column(
           children: [
             Container(
